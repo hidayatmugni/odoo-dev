@@ -16,31 +16,21 @@ import {
 import { MdWorkOutline } from "react-icons/md";
 import { BsBagCheckFill } from "react-icons/bs";
 
-/**
- * ModuleMarquee Component
- * -------------------------------------
- * 🔹 Reusable badge animation for Odoo modules / services
- * 🔹 Simple props:
- *     - reverse: boolean (optional) → reverse direction
- *     - speed: "slow" | "normal" | "fast"
- * 🔹 Uses Odoo solid color for clarity (#714B67)
- */
-
 const modules = [
-  { icon: <FaMoneyBillWave className="text-green-500" />, label: "Accounting" },
-  { icon: <FaIndustry className="text-orange-500" />, label: "Manufacturing" },
-  { icon: <FaChartLine className="text-cyan-500" />, label: "Sales" },
-  { icon: <BsBagCheckFill className="text-green-200" />, label: "Purchase" },
-  { icon: <FaWarehouse className="text-yellow-400" />, label: "Inventory" },
-  { icon: <FaStore className="text-pink-500" />, label: "E-commerce" },
+  { icon: <FaMoneyBillWave className="text-green-400" />, label: "Accounting" },
+  { icon: <FaIndustry className="text-orange-400" />, label: "Manufacturing" },
+  { icon: <FaChartLine className="text-cyan-400" />, label: "Sales" },
+  { icon: <BsBagCheckFill className="text-green-300" />, label: "Purchase" },
+  { icon: <FaWarehouse className="text-yellow-300" />, label: "Inventory" },
+  { icon: <FaStore className="text-pink-400" />, label: "E-commerce" },
   { icon: <FaUsers className="text-blue-300" />, label: "CRM" },
-  { icon: <FaBriefcase className="text-teal-600" />, label: "POS" },
-  { icon: <FaClock className="text-sky-400" />, label: "Timesheet" },
-  { icon: <FaUserTie className="text-amber-500" />, label: "HR" },
+  { icon: <FaBriefcase className="text-teal-400" />, label: "POS" },
+  { icon: <FaClock className="text-sky-300" />, label: "Timesheet" },
+  { icon: <FaUserTie className="text-amber-400" />, label: "HR" },
   { icon: <MdWorkOutline className="text-violet-300" />, label: "Recruitment" },
-  { icon: <FaLaptopCode className="text-slate-300" />, label: "Technical" },
-  { icon: <FaChalkboardTeacher className="text-rose-500" />, label: "Training" },
-  { icon: <FaLightbulb className="text-lime-500" />, label: "Strategy" },
+  { icon: <FaLaptopCode className="text-gray-400 dark:text-gray-300" />, label: "Technical" },
+  { icon: <FaChalkboardTeacher className="text-rose-400" />, label: "Training" },
+  { icon: <FaLightbulb className="text-lime-400" />, label: "Strategy" },
 ];
 
 export default function ModuleMarquee({ reverse = false, speed = "normal" }) {
@@ -55,18 +45,13 @@ export default function ModuleMarquee({ reverse = false, speed = "normal" }) {
   return (
     <div className="overflow-hidden w-full">
       <div
-        className={`flex gap-3 w-max ${
-          reverse ? "animate-marquee-reverse" : "animate-marquee"
-        }`}
+        className={`flex gap-4 w-max ${reverse ? "animate-marquee-reverse" : "animate-marquee"}`}
         style={{ animationDuration: duration }}
       >
         {[...modules, ...modules].map((m, i) => (
-          <div
-            key={i}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium text-white bg-[#714B67] shadow-sm hover:scale-105 transition-transform"
-          >
-            <span className="text-base">{m.icon}</span>
-            <span>{m.label}</span>
+          <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-2xl card-gloss glass-border shadow-[0_4px_20px_rgba(0,0,0,0.35)] hover:scale-105 transition-all duration-300">
+            <span className="text-base text-muted">{m.icon}</span>
+            <span className="text-sm text-muted font-medium">{m.label}</span>
           </div>
         ))}
       </div>
