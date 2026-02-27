@@ -9,7 +9,7 @@ import { IoIosShareAlt } from 'react-icons/io';
 export default function ShareButton(){
   const handleShare = async () => {
     const shareData = {
-      title: 'VANESSA AL TAWIL — ERP Consultant',
+      title: 'Mugni Hidayat — ERP Consultant',
       text: 'Portfolio — ERP Functional & Financial Consultant',
       url: window.location.href,
     };
@@ -31,8 +31,8 @@ export default function ShareButton(){
   };
 
   return (
-    <button onClick={handleShare} className="px-4 py-2 rounded-3xl card-glass flex gap-2 items-center border border-gray-200 hover:border-odoo/40 hover:bg-odoo/5 transition-all duration-200 shadow-sm">
-     <IoIosShareAlt/> Share
+    <button onClick={handleShare} className="btn-primary flex gap-2 items-center">
+      <IoIosShareAlt /> Share
     </button>
   );
 }

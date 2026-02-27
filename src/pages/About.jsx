@@ -1,16 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { motion } from "framer-motion";
 import { FaUserTie, FaGlobe, FaChartLine } from "react-icons/fa";
-
-/**
- * About Page — Elegant & Animated
- * - Uses stable fade-up animation with stagger
- * - Smooth load (no delay bugs)
- * - Consistent with Home & Contact animation logic
- */
+import GlossyCard from "../components/GlossyCard";
 
 export default function About() {
-  // Animation variants
   const fadeUp = {
     hidden: { opacity: 0, y: 25 },
     show: {
@@ -31,108 +25,86 @@ export default function About() {
 
   return (
     <motion.section
-      className="relative overflow-hidden bg-gradient-to-br from-white via-white to-odoo/5 rounded-3xl border border-odoo/10 shadow-lg p-8 md:p-12 max-w-5xl mx-auto text-gray-800"
       variants={container}
       initial="hidden"
       animate="show"
       viewport={{ once: true, amount: 0.2 }}
+      className="max-w-5xl mx-auto lg:mt-[80px]"
     >
-      {/* Background accent */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(113,75,103,0.08),transparent_70%)] pointer-events-none" />
-
-      {/* Header / Profile */}
+      <GlossyCard accent="teal" elevated className="p-8 md:p-12">
       <motion.div
         variants={fadeUp}
         className="relative z-10 text-center md:text-left mb-8"
       >
         <div className="flex flex-col md:flex-row items-center md:items-start gap-5">
-          <div className="w-24 h-24 rounded-full border-2 border-odoo shadow-sm overflow-hidden">
+          <div className="w-24 h-24 rounded-full glass-border shadow-sm overflow-hidden">
             <img
               src="../assets/photo.jpeg"
-              alt="Vanessa Al Tawil"
+              alt="Mugni Hidayat"
               className="w-full h-full object-cover"
             />
           </div>
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-odoo mb-2">
-              Vanessa Al Tawil
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">
+              Mugni Hidayat
             </h2>
-            <p className="text-gray-700 text-base md:text-lg">
-              Certified FMVA® Financial Analyst · Odoo Partner · ERP Consultant
+            <p className="text-muted text-base md:text-lg">
+              Odoo Developer · ERP Customization Specialist · System Integrator
             </p>
           </div>
         </div>
-        <div className="w-20 h-[3px] bg-odoo/80 mt-5 rounded-full mx-auto md:mx-0"></div>
       </motion.div>
 
-      {/* Content */}
       <motion.div
         variants={container}
         className="relative z-10 space-y-6 md:space-y-7 leading-relaxed"
       >
-        <motion.p variants={fadeUp} className="text-base md:text-lg">
-          I am <span className="font-semibold text-odoo">Vanessa Al Tawil</span>,
-          a Certified <strong>FMVA® Financial Analyst</strong>, Official{" "}
-          <strong>Odoo Partner</strong>, and Functional ERP Consultant holding a{" "}
-          <strong>European Master’s in Financial Markets and Economic Analysis</strong>.
+        <motion.p variants={fadeUp} className="text-base md:text-lg text-muted">
+          I am <span className="font-semibold text-text dark:text-white">Mugni Hidayat</span>,
+          an <strong>Odoo Developer</strong> focused on building scalable ERP
+          customizations and automation solutions tailored to real operational
+          needs.
         </motion.p>
 
-        <motion.p variants={fadeUp} className="text-base md:text-lg">
-          Together with my team of experienced finance and ERP professionals, we
-          collaborate with organizations across{" "}
-          <strong>Europe, the Middle East, and Asia</strong> to strengthen
-          financial governance, streamline operations, and accelerate digital
-          transformation.
+        <motion.p variants={fadeUp} className="text-base md:text-lg text-muted">
+          My expertise lies in developing custom modules, integrating systems,
+          and transforming complex business workflows into efficient,
+          data-driven ERP processes.
         </motion.p>
 
-        <motion.div
-          variants={fadeUp}
-          className="flex items-start gap-3 bg-white/60 p-4 rounded-2xl border border-odoo/10 shadow-sm"
-        >
-          <FaUserTie className="text-odoo text-2xl mt-1" />
-          <p className="text-base md:text-lg text-gray-700">
-            As an <strong className="text-odoo">Odoo Partner</strong>, we lead end-to-end ERP
-            implementations integrating{" "}
-            <em>Accounting, Sales, Purchasing, Inventory, Manufacturing, HR, and CRM</em>{" "}
-            into one intelligent, cohesive platform.
-          </p>
+        <motion.div variants={fadeUp} className="flex items-start gap-3">
+          <GlossyCard accent="orange" className="p-4 w-full flex items-start gap-3">
+            <FaUserTie className="text-orange-400 text-2xl mt-1 flex-shrink-0" />
+            <p className="text-base md:text-lg text-text/70 dark:text-white/70">
+              I specialize in end-to-end ERP customization including
+              <em> Inventory, Manufacturing, Sales, Reporting, and Workflow Automation</em>
+              to help businesses operate with better visibility and control.
+            </p>
+          </GlossyCard>
         </motion.div>
 
-        <motion.div
-          variants={fadeUp}
-          className="flex items-start gap-3 bg-white/60 p-4 rounded-2xl border border-odoo/10 shadow-sm"
-        >
-          <FaChartLine className="text-odoo text-2xl mt-1" />
-          <p className="text-base md:text-lg text-gray-700">
-            Our core strengths include{" "}
-            <strong>financial process automation, cost-control frameworks, and
-            multi-company consolidation</strong>, powered by{" "}
-            <strong className="text-odoo">AI-driven analytics</strong> that deliver predictive
-            insights and enhance performance visibility.
-          </p>
+        <motion.div variants={fadeUp} className="flex items-start gap-3">
+          <GlossyCard accent="purple" className="p-4 w-full flex items-start gap-3">
+            <FaChartLine className="text-purple-400 text-2xl mt-1 flex-shrink-0" />
+            <p className="text-base md:text-lg text-muted">
+              My work often involves building
+              <strong> custom reports, automation logic, and system integrations</strong>
+              that turn operational data into meaningful insights.
+            </p>
+          </GlossyCard>
         </motion.div>
 
-        <motion.div
-          variants={fadeUp}
-          className="flex items-start gap-3 bg-white/60 p-4 rounded-2xl border border-odoo/10 shadow-sm"
-        >
-          <FaGlobe className="text-odoo text-2xl mt-1" />
-          <p className="text-base md:text-lg text-gray-700">
-            We operate with precision, transparency, and strategic focus — ensuring
-            every system we build becomes a foundation for sustainable growth.{" "}
-            <span className="text-odoo font-medium">
-              Our mission is to transform data into clarity and clarity into
-              long-term competitive advantage.
-            </span>
-          </p>
+        <motion.div variants={fadeUp} className="flex items-start gap-3">
+          <GlossyCard accent="blue" className="p-4 w-full flex items-start gap-3">
+            <FaGlobe className="text-blue-400 text-2xl mt-1 flex-shrink-0" />
+            <p className="text-base md:text-lg text-muted">
+              My mission is to simplify complexity — building systems that are
+              reliable, maintainable, and aligned with real business operations.
+            </p>
+          </GlossyCard>
         </motion.div>
       </motion.div>
-
-      {/* Accent divider */}
-      <motion.div
-        variants={fadeUp}
-        className="mt-10 h-[2px] w-full bg-gradient-to-r from-odoo/20 via-odoo/60 to-transparent rounded-full"
-      />
+      </GlossyCard>
     </motion.section>
   );
 }

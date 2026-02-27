@@ -1,14 +1,15 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { motion } from "framer-motion";
 import Header from "../components/Header";
 import ContactCard from "../components/ContactCard";
 import Footer from "../components/Footer";
+import GlossyCard from "../components/GlossyCard";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const navigate = useNavigate();
 
-  // Simpler animation variants (no delay stacking)
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
     show: {
@@ -33,93 +34,105 @@ export default function Home() {
   };
 
   return (
-    <motion.div
-      className="space-y-10 md:space-y-12"
-      variants={container}
-      initial="hidden"
-      animate="show"
-    >
-      {/* HEADER */}
-      <motion.div variants={fadeUp}>
-        <Header />
-      </motion.div>
-
-      {/* GRID SECTION */}
+    <div className="relative min-h-screen overflow-hidden">
       <motion.div
-        className="grid md:grid-cols-3 gap-8"
+        className="relative z-10 space-y-10 md:space-y-12 px-6 pt-4 pb-10 max-w-6xl mx-auto"
         variants={container}
-        viewport={{ once: true, amount: 0.2 }}
+        initial="hidden"
+        animate="show"
       >
-        {/* CONTACT */}
-        <motion.div variants={fadeUp} className="md:order-2 flex flex-col gap-6">
-          <ContactCard />
+        {/* Header */}
+        <motion.div variants={fadeUp}>
+          <Header />
         </motion.div>
 
-        {/* ABOUT PREVIEW */}
+        {/* About + Contact Section */}
         <motion.div
-          variants={fadeUp}
-          className="order-2 md:order-1 md:col-span-2 card-glass rounded-2xl border border-odoo/10 shadow-sm backdrop-blur-md p-6 md:p-8 flex flex-col justify-between"
+          className="grid md:grid-cols-3 gap-8"
+          variants={container}
         >
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-odoo mb-3">
-              About Me
-            </h2>
-            <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-4">
-              I’m <strong>Vanessa Al Tawil</strong> — an{" "}
-              <strong>Odoo Partner</strong> and{" "}
-              <strong>Certified FMVA® Financial Analyst</strong>.  
-              With a European Master’s in Financial Markets, I help businesses
-              across <strong>Europe</strong>, the{" "}
-              <strong>Middle East</strong>, and{" "}
-              <strong>Asia</strong> transform their operations through ERP,
-              automation, and finance excellence.
-            </p>
-            <p className="text-gray-700 text-sm md:text-base leading-relaxed">
-              My work focuses on <strong>financial process design</strong>,{" "}
-              <strong>ERP implementation</strong>, and{" "}
-              <strong>digital transformation</strong> — turning complexity into clarity.
-            </p>
-          </div>
+          {/* Contact */}
+          <motion.div
+            variants={fadeUp}
+            className="md:order-2 flex flex-col gap-6"
+          >
+            <ContactCard />
+          </motion.div>
 
-          <div className="mt-6">
-            <button
-              onClick={() => handleNavigate("/about")}
-              className="text-sm md:text-base font-medium text-odoo border border-odoo/50 rounded-full px-4 py-2 hover:bg-odoo hover:text-white transition-all duration-200"
+          {/* About */}
+          <motion.div
+            variants={fadeUp}
+            className="order-2 md:order-1 md:col-span-2"
+          >
+            <GlossyCard
+              accent="teal"
+              elevated
+              className="p-6 md:p-8 flex flex-col justify-between h-full"
             >
-              Learn More →
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold mb-3 dark:text-white">
+                  About Me
+                </h2>
+
+                <p className="text-muted text-sm md:text-base leading-relaxed mb-4">
+                  I’m <strong>Mugni Hidayat</strong> — an{" "}
+                  <strong>Odoo Developer</strong> focused on building
+                  custom ERP solutions that align technology with real
+                  business operations.
+                </p>
+
+                <p className="text-muted text-sm md:text-base leading-relaxed">
+                  My work includes <strong>custom module development</strong>,{" "}
+                  <strong>workflow automation</strong>, and{" "}
+                  <strong>advanced reporting</strong> — helping businesses
+                  improve efficiency and gain better operational visibility.
+                </p>
+              </div>
+
+              <div className="mt-6">
+                <button
+                  onClick={() => handleNavigate("/about")}
+                  className="btn-primary text-sm md:text-base font-medium"
+                >
+                  Learn More →
+                </button>
+              </div>
+            </GlossyCard>
+          </motion.div>
+        </motion.div>
+
+        {/* Services Section */}
+        <motion.div variants={fadeUp}>
+          <GlossyCard
+            accent="orange"
+            elevated
+            className="p-6 md:p-8 text-center"
+          >
+            <h3 className="text-xl md:text-2xl font-bold dark:text-white mb-3">
+              Explore My Services
+            </h3>
+
+            <p className="text-muted text-sm md:text-base leading-relaxed mb-6">
+              From <strong>ERP Customization</strong> and{" "}
+              <strong>System Integration</strong> to{" "}
+              <strong>Automation & Reporting</strong>, I help businesses
+              streamline operations and scale efficiently.
+            </p>
+
+            <button
+              onClick={() => handleNavigate("/services")}
+              className="btn-primary text-sm md:text-base font-medium px-5 py-2"
+            >
+              Check More →
             </button>
-          </div>
+          </GlossyCard>
+        </motion.div>
+
+        {/* Footer */}
+        <motion.div variants={fadeUp}>
+          <Footer />
         </motion.div>
       </motion.div>
-
-      {/* SERVICES PREVIEW */}
-      <motion.div
-        variants={fadeUp}
-        viewport={{ once: true, amount: 0.2 }}
-        className="card-glass p-6 md:p-8 rounded-2xl border border-odoo/10 shadow-sm backdrop-blur-md text-center"
-      >
-        <h3 className="text-xl md:text-2xl font-bold text-odoo mb-3">
-          Explore My Services
-        </h3>
-        <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-6">
-          From <strong>ERP Implementation</strong> and{" "}
-          <strong>Financial Modeling</strong> to{" "}
-          <strong>Digital Transformation</strong>,  
-          we help your business grow efficiently and sustainably.
-        </p>
-
-        <button
-          onClick={() => handleNavigate("/services")}
-          className="text-sm md:text-base font-medium border border-odoo/50 text-odoo rounded-full px-5 py-2 hover:bg-odoo hover:text-white transition-all duration-200"
-        >
-          Check More →
-        </button>
-      </motion.div>
-
-      {/* FOOTER */}
-      <motion.div variants={fadeUp}>
-        <Footer />
-      </motion.div>
-    </motion.div>
+    </div>
   );
 }

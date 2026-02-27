@@ -1,28 +1,44 @@
 // src/context/AppContext.jsx
-import React, { createContext, useState } from "react";
-
-/**
- * AppContext provides simple global state (e.g., contact details, theme).
- * Keep it lightweight. Expand if you need more complex state.
- */
+/* eslint-disable react-refresh/only-export-components */
+import React, { createContext, useState, useEffect } from "react";
 
 export const AppContext = createContext();
 
-export function AppProvider({ children }){
+export function AppProvider({ children }) {
+
   const [contact, setContact] = useState({
-    phone: "+96176033861", // placeholder - replace with your number
-    phoneSecondary: "+971508565764", // placeholder - replace with your number
-    linkedin: "https://www.linkedin.com/in/vanessa-al-tawil-fmva-2a92b0119",
-    instagram: "https://www.instagram.com/yourprofile",
+    phone: "+6281276773103",
+    instagram: "hidayatmugni",
+    linkedin: "https://www.linkedin.com/in/hidayatmugni",
+    email: "hidayatmugni.dev@gmail.com"
   });
 
-  // theme could hold color overrides in the future
-  const [theme] = useState({
-    primary: "var(--odoo-purple)",
+  // Theme state: 'dark' | 'light'
+  const [themeMode, setThemeMode] = useState(() => {
+    try {
+      return localStorage.getItem('themeMode') || 'dark';
+    } catch {
+      return 'dark';
+    }
   });
+
+  useEffect(() => {
+    const html = document.documentElement;
+    html.classList.remove('dark');
+    if (themeMode === 'dark') {
+      html.classList.add('dark');
+    }
+    try {
+      localStorage.setItem('themeMode', themeMode);
+    } catch {
+      // Ignore localStorage errors in private mode or disabled storage
+    }
+  }, [themeMode]);
+
+  const toggleTheme = () => setThemeMode((t) => (t === 'light' ? 'dark' : 'light'));
 
   return (
-    <AppContext.Provider value={{ contact, setContact, theme }}>
+    <AppContext.Provider value={{ contact, setContact, themeMode, toggleTheme }}>
       {children}
     </AppContext.Provider>
   );
