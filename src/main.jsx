@@ -11,18 +11,18 @@ createRoot(document.getElementById("root")).render(
     <AppProvider>
       <BrowserRouter>
         {/* Background Wrapper dengan Logic Theme */}
-        <div className="relative min-h-screen transition-colors duration-700 bg-white dark:bg-black">
+        <div className="relative min-h-screen transition-colors duration-700 bg-black">
 
           {/* Luxury Aura Glow - Lebih Colorful dan Hidup */}
           <div className="fixed inset-0 overflow-hidden pointer-events-none">
             {/* Glow Oranye (Newsletter Vibes) */}
-            <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-orange-500/10 dark:bg-orange-600/20 blur-[120px] rounded-full animate-pulse" />
+            <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[700px] bg-orange-500/20 dark:bg-orange-600/20 blur-[140px] rounded-full animate-pulse" />
             
             {/* Glow Biru (Tools Vibes) */}
-            <div className="absolute top-[30%] right-[-5%] w-[400px] h-[400px] bg-blue-500/10 dark:bg-blue-600/15 blur-[100px] rounded-full" />
+            <div className="absolute top-[30%] right-[-5%] w-[500px] h-[500px] bg-blue-500/20 dark:bg-blue-700/35 blur-[120px] rounded-full" />
             
             {/* Glow Hijau (Insights Vibes) */}
-            <div className="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-emerald-500/10 dark:bg-emerald-600/10 blur-[150px] rounded-full" />
+            <div className="absolute bottom-[-10%] left-[20%] w-[700px] h-[700px] bg-emerald-500/20 dark:bg-emerald-700/30 blur-[170px] rounded-full" />
           </div>
 
           {/* Content Layer */}

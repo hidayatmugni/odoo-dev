@@ -57,7 +57,7 @@ export default function ContactCard() {
         viewport={{ once: true }}
         className="w-full"
       >
-        <h3 className="text-2xl font-bold mb-6 text-center md:text-left text-gradient">
+        <h3 className="text-2xl font-bold mb-6 text-center md:text-left text-gray-900 dark:text-white">
           Contact Information
         </h3>
 

@@ -75,7 +75,8 @@ export default function Services() {
   };
 
   return (
-    <motion.div className="space-y-10 lg:mt-[80px]" initial="hidden" animate="visible" variants={fadeUp}>
+    <motion.div className="bg-black/60 backdrop-blur-xl rounded-3xl p-6 md:p-8 transition-colors duration-400" initial="hidden" animate="visible" variants={fadeUp}>
+
       <motion.div variants={fadeUp} custom={0} className="text-center space-y-2">
         <h1 className="text-3xl md:text-4xl font-bold">
           Services
@@ -85,7 +86,7 @@ export default function Services() {
         </p>
       </motion.div>
 
-      <motion.div variants={fadeUp} custom={1} className="space-y-3">
+      <motion.div variants={fadeUp} custom={1} className="space-y-3 lg:mb-10">
         <ModuleMarquee speed="slow" />
         <ModuleMarquee reverse speed="slow" />
       </motion.div>
@@ -123,14 +124,14 @@ export default function Services() {
 
       <AnimatePresence>
         {selected && (
-          <motion.div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[9999] px-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <motion.div className="fixed inset-0 bg-black/40 backdrop-blur-lg flex items-center justify-center z-[9999] px-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div
               className="absolute inset-0"
               onClick={() => setSelected(null)}
             ></div>
 
             <motion.div initial={{ scale: 0.9, opacity: 0, y: 30 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 30 }} transition={{ duration: 0.4, ease: "easeOut" }} className="relative w-full max-w-[650px]">
-              <GlossyCard accent="pink" elevated className="p-6 relative">
+              <GlossyCard accent="pink" elevated className="p-6 relative bg-black/80">
                 <button
                   onClick={() => setSelected(null)}
                   className="absolute top-3 right-3 text-text/50 dark:text-white/50 hover:text-text dark:hover:text-white text-xl transition-colors duration-300"
@@ -158,6 +159,8 @@ export default function Services() {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* </div> */}
+
     </motion.div>
   );
 }

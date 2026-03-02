@@ -5,8 +5,9 @@
 @tailwind utilities;
 
 /* ========== GLOSSY MODERN THEME - COLOR TOKENS ========== */
+/* defaults are dark since light mode is removed completely */
 :root {
-  /* Vibrant accent colors */
+  /* Vibrant accent colors (same) */
   --accent-teal: 32 201 151;
   --accent-cyan: 23 162 184;
   --accent-orange: 255 111 0;
@@ -14,12 +15,15 @@
   --accent-purple: 168 85 247;
   --accent-emerald: 16 185 129;
   --accent-amber: 245 158 11;
+  /* dark text & backgrounds */
+  --text: 248 250 252;       /* light slate for dark bg */
+  --muted: 203 213 225;      /* lighter muted */
+  --bg: 2 6 23;              /* near-black base */
+  --glass-border: 51 65 85;  /* darker glass border */
 }
 
 /* ========== BODY & BASE STYLES ========== */
-html {
-  transition: background-color 300ms ease, color 300ms ease;
-}
+s
 
 html, body {
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -31,17 +35,22 @@ body {
   position: relative;
 }
 
-/* Light mode (default) */
-html {
-  background-color: #cecdcd;
-  color: #111111;
+/* Dark mode (only theme) */
+html.dark {
+  /* base + luxury glows */
+  background-color: #000000;
+  background-image: radial-gradient(circle at 25% 25%, rgba(32,201,151,0.05), transparent 40%),
+                    radial-gradient(circle at 75% 75%, rgba(168,85,247,0.05), transparent 50%);
+  background-attachment: fixed;
+  color: #f5f4f2;
+  --text: 248 250 252;
+  --muted: 203 213 225;
+  --bg: 2 6 23;
+  --glass-border: 51 65 85;
 }
 
-/* Dark mode */
-html.dark {
-  background-color: #000000;
-  color: #f5f4f2;
-}
+/* Light‑mode enhancements – add subtle gradients, extra gloss and a richer backdrop */
+/* light mode removed; dark mode is the only theme */
 
 /* Subtle mesh/grain texture overlay */
 body::before {
@@ -52,7 +61,9 @@ body::before {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' seed='1' /%3E%3C/filter%3E%3Crect width='1200' height='800' filter='url(%23noise)' opacity='0.03' /%3E%3C/svg%3E");
+  background-image: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' seed='1' /%3E%3C/filter%3E%3Crect width='1200' height='800' filter='url(%23noise)' opacity='0.03' /%3E%3C/svg%3E"),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02), transparent 70%);
   z-index: -1;
 }
 
@@ -80,15 +91,6 @@ html.dark .glass-border {
   transition: all 300ms cubic-bezier(0.23, 1, 0.320, 1);
 }
 
-html:not(.dark) .card-gloss {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(32, 201, 151, 0.2);
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 0 30px rgba(32, 201, 151, 0.08),
-    0 0 15px rgba(32, 201, 151, 0.1);
-}
 
 .card-gloss:hover {
   border-color: rgba(32, 201, 151, 0.5);
@@ -100,13 +102,6 @@ html:not(.dark) .card-gloss {
   transform: translateY(-4px);
 }
 
-html:not(.dark) .card-gloss:hover {
-  box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 0 40px rgba(32, 201, 151, 0.12),
-    0 0 25px rgba(32, 201, 151, 0.2);
-}
 
 /* ========== ORANGE VARIANT ========== */
 .card-gloss-orange {
@@ -118,14 +113,6 @@ html:not(.dark) .card-gloss:hover {
     0 0 20px rgba(255, 111, 0, 0.2);
 }
 
-html:not(.dark) .card-gloss-orange {
-  border-color: rgba(255, 111, 0, 0.2);
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 0 30px rgba(255, 111, 0, 0.08),
-    0 0 15px rgba(255, 111, 0, 0.1);
-}
 
 .card-gloss-orange:hover {
   border-color: rgba(255, 111, 0, 0.5);
@@ -147,14 +134,6 @@ html:not(.dark) .card-gloss-orange {
     0 0 20px rgba(168, 85, 247, 0.2);
 }
 
-html:not(.dark) .card-gloss-purple {
-  border-color: rgba(168, 85, 247, 0.2);
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 0 30px rgba(168, 85, 247, 0.08),
-    0 0 15px rgba(168, 85, 247, 0.1);
-}
 
 .card-gloss-purple:hover {
   border-color: rgba(168, 85, 247, 0.5);
@@ -176,14 +155,6 @@ html:not(.dark) .card-gloss-purple {
     0 0 20px rgba(23, 162, 184, 0.2);
 }
 
-html:not(.dark) .card-gloss-blue {
-  border-color: rgba(23, 162, 184, 0.2);
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 0 30px rgba(23, 162, 184, 0.08),
-    0 0 15px rgba(23, 162, 184, 0.1);
-}
 
 .card-gloss-blue:hover {
   border-color: rgba(23, 162, 184, 0.5);
@@ -205,14 +176,12 @@ html:not(.dark) .card-gloss-blue {
     0 0 20px rgba(236, 72, 153, 0.2);
 }
 
-html:not(.dark) .card-gloss-pink {
-  border-color: rgba(236, 72, 153, 0.2);
-  box-shadow: 
+/* box-shadow: 
     0 10px 40px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     inset 0 0 30px rgba(236, 72, 153, 0.08),
     0 0 15px rgba(236, 72, 153, 0.1);
-}
+} */
 
 .card-gloss-pink:hover {
   border-color: rgba(236, 72, 153, 0.5);
@@ -287,8 +256,9 @@ h3 {
 }
 
 /* ========== TEXT & UTILITY CLASSES ========== */
+/* muted text should be a bit darker in light mode for better contrast and depth */
 .text-muted {
-  color: #6b7280;
+  color: #4b5563; /* slate-600 instead of slate-500 */
 }
 
 html.dark .text-muted {
@@ -347,14 +317,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-h1 {
-  font-size: 2.5rem;
-  line-height: 1.2;
-  background: linear-gradient(135deg, rgb(var(--text)), rgba(var(--text), 0.8));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
 
 h2 {
   font-size: 2rem;
@@ -377,7 +339,12 @@ h3 {
   font-weight: 600;
   font-size: 0.95rem;
   color: rgb(var(--text));
-  background: linear-gradient(135deg, rgba(var(--accent), 0.15), rgba(var(--accent), 0.08));
+  /* background: linear-gradient(135deg, rgba(var(--accent), 0.15), rgba(var(--accent), 0.08)); */
+  background: linear-gradient(
+    135deg,
+    rgba(var(--accent-teal), 0.2),
+    rgba(var(--accent-purple), 0.15)
+  );
   border: 1.5px solid rgba(var(--accent), 0.2);
   box-shadow: 
     0 6px 22px rgba(var(--jewel), 0.08),

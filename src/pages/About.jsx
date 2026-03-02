@@ -29,7 +29,7 @@ export default function About() {
       initial="hidden"
       animate="show"
       viewport={{ once: true, amount: 0.2 }}
-      className="max-w-5xl mx-auto lg:mt-[80px]"
+      className="max-w-5xl mx-auto bg-black/60 backdrop-blur-xl rounded-3xl p-6 md:p-8 transition-colors duration-400"
     >
       <GlossyCard accent="teal" elevated className="p-8 md:p-12">
       <motion.div

@@ -2,7 +2,6 @@
 import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { BsMoonStars, BsSun } from "react-icons/bs"; // Menggunakan icon yang lebih 'mewah'
 import { AppContext } from "../context/AppContext";
 
 const links = [
@@ -14,7 +13,7 @@ const links = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { themeMode, toggleTheme } = useContext(AppContext);
+  const { toggleTheme } = useContext(AppContext); // noop
 
   return (
     <motion.nav
@@ -23,7 +22,7 @@ export default function Navbar() {
       className="fixed top-6 left-0 right-0 z-[999] px-4"
     >
       <div className="max-w-5xl mx-auto"> 
-        <div className="card-gloss backdrop-blur-2xl bg-white/70 dark:bg-black/60 border border-gray-200/30 dark:border-white/10 shadow-lg dark:shadow-2xl rounded-[2rem] px-6 py-3 flex items-center justify-between transition-all duration-500">
+        <div className="card-gloss backdrop-blur-2xl bg-black/60 border border-gray-200/30 dark:border-white/10 shadow-lg dark:shadow-2xl rounded-[2rem] px-6 py-3 flex items-center justify-between transition-all duration-500">
           
           {/* Logo Section */}
           <div className="flex items-center gap-3">
@@ -46,7 +45,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1 bg-gray-100 dark:bg-white/5 p-1 rounded-full border border-gray-200/50 dark:border-white/5 transition-colors duration-300">
+          <div className="hidden md:flex items-center gap-1 bg-white/5 p-1 rounded-full border border-gray-200/50 transition-colors duration-300">
             {links.map((link) => (
               <NavLink
                 key={link.to}
@@ -54,8 +53,8 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   `text-sm px-5 py-2 rounded-full transition-all duration-300 font-bold ${
                     isActive
-                      ? "bg-white dark:bg-white/20 text-accent-teal shadow-sm"
-                      : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                      ? "bg-white/20 text-accent-teal shadow-sm"
+                      : "text-gray-300 hover:text-white"
                   }`
                 }
               >
@@ -66,17 +65,10 @@ export default function Navbar() {
 
           {/* Right Side: Theme & Mobile Toggle */}
           <div className="flex items-center gap-3">
-            <button
-              onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-lg hover:scale-110 active:scale-95 transition-all duration-300"
-              aria-label="Toggle theme"
-            >
-              {themeMode === 'light' ? <BsMoonStars size={18} /> : <BsSun size={18} />}
-            </button>
-
+            
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2.5 rounded-xl border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white transition-colors duration-300"
+              className="md:hidden p-2.5 rounded-xl border border-gray-200 text-white transition-colors duration-300"
               aria-label="Toggle menu"
             >
               <div className="w-6 h-5 relative flex flex-col justify-between">
@@ -96,7 +88,7 @@ export default function Navbar() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="absolute top-20 left-4 right-4 md:hidden card-gloss bg-white/90 dark:bg-black/80 backdrop-blur-2xl rounded-3xl border border-gray-200/30 dark:border-white/20 p-4 shadow-2xl transition-colors duration-300"
+            className="absolute top-20 left-4 right-4 md:hidden card-gloss bg-black/90 backdrop-blur-2xl rounded-3xl border border-gray-200/30 dark:border-white/20 p-4 shadow-2xl transition-colors duration-300"
           >
             <div className="flex flex-col gap-2">
               {links.map((link) => (
@@ -104,7 +96,7 @@ export default function Navbar() {
                   key={link.to}
                   to={link.to}
                   onClick={() => setIsOpen(false)}
-                  className="px-6 py-4 rounded-2xl font-bold text-gray-700 dark:text-gray-300 hover:bg-accent-teal/10 hover:text-accent-teal transition-all duration-300"
+                  className="px-6 py-4 rounded-2xl font-bold text-gray-300 hover:bg-accent-teal/10 hover:text-accent-teal transition-all duration-300"
                 >
                   {link.label}
                 </NavLink>

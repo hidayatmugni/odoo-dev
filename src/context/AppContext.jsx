@@ -13,32 +13,15 @@ export function AppProvider({ children }) {
     email: "hidayatmugni.dev@gmail.com"
   });
 
-  // Theme state: 'dark' | 'light'
-  const [themeMode, setThemeMode] = useState(() => {
-    try {
-      return localStorage.getItem('themeMode') || 'dark';
-    } catch {
-      return 'dark';
-    }
-  });
-
+  // Always dark theme; remove toggle and persistence
   useEffect(() => {
-    const html = document.documentElement;
-    html.classList.remove('dark');
-    if (themeMode === 'dark') {
-      html.classList.add('dark');
-    }
-    try {
-      localStorage.setItem('themeMode', themeMode);
-    } catch {
-      // Ignore localStorage errors in private mode or disabled storage
-    }
-  }, [themeMode]);
+    document.documentElement.classList.add('dark');
+  }, []);
 
-  const toggleTheme = () => setThemeMode((t) => (t === 'light' ? 'dark' : 'light'));
+  const toggleTheme = () => {}; // no-op kept for compatibility
 
   return (
-    <AppContext.Provider value={{ contact, setContact, themeMode, toggleTheme }}>
+    <AppContext.Provider value={{ contact, setContact, toggleTheme }}>
       {children}
     </AppContext.Provider>
   );

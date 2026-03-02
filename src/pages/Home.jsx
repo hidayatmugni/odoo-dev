@@ -34,9 +34,9 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden bg-black/50 backdrop-blur-xl transition-colors duration-400">
       <motion.div
-        className="relative z-10 space-y-10 md:space-y-12 px-6 pt-4 pb-10 max-w-6xl mx-auto"
+        className="relative z-10 space-y-10 md:space-y-12 px-6 pt-4 pb-10 max-w-6xl mx-auto bg-black/60 rounded-3xl backdrop-blur-lg transition-colors duration-400"
         variants={container}
         initial="hidden"
         animate="show"
@@ -48,22 +48,11 @@ export default function Home() {
 
         {/* About + Contact Section */}
         <motion.div
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-[60%_36%] gap-8"
           variants={container}
         >
-          {/* Contact */}
-          <motion.div
-            variants={fadeUp}
-            className="md:order-2 flex flex-col gap-6"
-          >
-            <ContactCard />
-          </motion.div>
-
           {/* About */}
-          <motion.div
-            variants={fadeUp}
-            className="order-2 md:order-1 md:col-span-2"
-          >
+          <motion.div variants={fadeUp}>
             <GlossyCard
               accent="teal"
               elevated
@@ -98,6 +87,11 @@ export default function Home() {
                 </button>
               </div>
             </GlossyCard>
+          </motion.div>
+
+          {/* Contact */}
+          <motion.div variants={fadeUp} className="flex flex-col gap-6">
+            <ContactCard />
           </motion.div>
         </motion.div>
 

@@ -21,7 +21,7 @@ export default function Header({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       // Perbaikan Layout: justify-between agar tidak menumpuk di kanan
-      className="flex flex-col md:flex-row justify-between items-center gap-8 p-8 md:p-12 rounded-[2rem] card-gloss glass-border relative overflow-hidden transition-all duration-500 bg-white/70 dark:bg-black/40 backdrop-blur-xl shadow-2xl"
+      className="flex flex-col md:flex-row justify-between items-center gap-8 p-8 md:p-12 rounded-[2rem] card-gloss glass-border relative overflow-hidden transition-all duration-500 bg-black/40 backdrop-blur-xl shadow-2xl"
     >
       {/* Bagian Kiri: Foto & Identitas */}
       <div className="flex items-center flex-col md:flex-row gap-8 text-center md:text-left z-10">
@@ -64,7 +64,7 @@ export default function Header({
           rel="noreferrer"
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold text-lg shadow-xl hover:shadow-lg dark:hover:shadow-xl transition-all duration-300"
+          className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 text-white font-bold text-lg shadow-xl hover:shadow-lg transition-all duration-300"
         >
           <div className="flex items-center gap-2 white dark:text-gray-900 text-sm font-medium">
 
@@ -73,13 +73,13 @@ export default function Header({
                 alt="WhatsApp" 
                 className="w-4 h-4 invert dark:invert-0 transition-filter duration-300" 
                 />
-                <span className="hidden sm:inline font-lg">
+                <span className="hidden sm:inline font-lg text-white dark:text-gray-300 transition-colors duration-300">
                 Let's Talk
                 </span>
           </div>
         </motion.a>
 
-        <div className="p-1 rounded-2xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-md transition-colors duration-300">
+        <div className="p-1 rounded-2xl bg-white/5 border border-gray-200 backdrop-blur-md transition-colors duration-300">
           <ShareButton />
         </div>
       </div>
