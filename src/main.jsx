@@ -5,11 +5,13 @@ import AppRoutes from "./routes/AppRoutes";
 import "./index.css";
 import { AppProvider } from "./context/AppContext";
 import ScrollToTop from "./components/ScrollToTop.";
+import DevelopmentBanner from "./components/DevelopmentBanner";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AppProvider>
       <BrowserRouter>
+        <DevelopmentBanner />
         {/* Background Wrapper dengan Logic Theme */}
         <div className="relative min-h-screen transition-colors duration-700 bg-black">
 
