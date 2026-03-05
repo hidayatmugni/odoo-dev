@@ -29,8 +29,8 @@ const modules = [
   { icon: <FaUserTie className="text-amber-400" />, label: "HR" },
   { icon: <MdWorkOutline className="text-violet-300" />, label: "Recruitment" },
   { icon: <FaLaptopCode className="text-gray-400 dark:text-gray-300" />, label: "Technical" },
-  { icon: <FaChalkboardTeacher className="text-rose-400" />, label: "Training" },
-  { icon: <FaLightbulb className="text-lime-400" />, label: "Strategy" },
+  // { icon: <FaChalkboardTeacher className="text-rose-400" />, label: "Training" },
+  // { icon: <FaLightbulb className="text-lime-400" />, label: "Strategy" },
 ];
 
 export default function ModuleMarquee({ reverse = false, speed = "normal" }) {

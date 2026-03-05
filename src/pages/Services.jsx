@@ -77,7 +77,7 @@ export default function Services() {
   return (
     <motion.div className="bg-black/60 backdrop-blur-xl rounded-3xl p-6 md:p-8 transition-colors duration-400" initial="hidden" animate="visible" variants={fadeUp}>
 
-      <motion.div variants={fadeUp} custom={0} className="text-center space-y-2">
+      <motion.div variants={fadeUp} custom={0} className="text-center space-y-2 mb-10">
         <h1 className="text-3xl md:text-4xl font-bold">
           Services
         </h1>
