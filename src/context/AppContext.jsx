@@ -10,7 +10,8 @@ export function AppProvider({ children }) {
     phone: "+6281276773103",
     instagram: "hidayatmugni",
     linkedin: "https://www.linkedin.com/in/hidayatmugni",
-    email: "hidayatmugni.dev@gmail.com"
+    email: "hidayatmugni.dev@gmail.com",
+    github: "https://github.com/hidayatmugni",
   });
 
   // Always dark theme; remove toggle and persistence

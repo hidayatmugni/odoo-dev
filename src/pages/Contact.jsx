@@ -7,6 +7,7 @@ import { FaInstagram } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import GlossyCard from "../components/GlossyCard";
 import ContactCard from "../components/ContactCard";
+import { FaGithub } from "react-icons/fa";
 
 export default function Contact() {
   const { contact } = useContext(AppContext);
@@ -18,16 +19,16 @@ export default function Contact() {
       href: `https://wa.me/${contact.phone.replace(/\D/g, "")}`,
       icon: <FaPhoneAlt className="text-green-400 w-5 h-5" />,
     },
-    {
-      label: "Instagram",
-      value: `@${contact.instagram}`,
-      href: contact.instagram
-        ? `https://www.instagram.com/${contact.instagram}`
-        : "#",
-      icon: (
-        <FaInstagram className="w-5 h-5 bg-gradient-to-r from-pink-500 via-orange-400 to-purple-500 text-transparent bg-clip-text" />
-      ),
-    },
+    // {
+    //   label: "Instagram",
+    //   value: `@${contact.instagram}`,
+    //   href: contact.instagram
+    //     ? `https://www.instagram.com/${contact.instagram}`
+    //     : "#",
+    //   icon: (
+    //     <FaInstagram className="w-5 h-5" />
+    //   ),
+    // },
     {
       label: "LinkedIn",
       value: "LinkedIn Profile",
@@ -96,7 +97,7 @@ export default function Contact() {
             className="p-8 h-full flex flex-col justify-between"
           >
             <div>
-              <h3 className="text-2xl font-semibold mb-8 text-gradient">
+              <h3 className="text-2xl font-semibold mb-8">
                 Contact Information
               </h3>
 
@@ -152,12 +153,12 @@ export default function Contact() {
             <div className="flex gap-4 mt-8">
               <motion.a
                 whileHover={{ scale: 1.08 }}
-                href={contact.linkedin}
+                href={contact.github}
                 target="_blank"
                 rel="noreferrer"
                 className="p-3 rounded-full border border-text/20 hover:bg-text/5 transition"
               >
-                <FaLinkedin className="text-blue-400 w-5 h-5" />
+                <FaGithub className="text-gray-200 w-5 h-5" />
               </motion.a>
 
               <motion.a
@@ -167,7 +168,7 @@ export default function Contact() {
                 rel="noreferrer"
                 className="p-3 rounded-full border border-text/20 hover:bg-text/5 transition"
               >
-                <FaPhoneAlt className="text-green-400 w-5 h-5" />
+                <FaInstagram className="text-red-400 w-5 h-5" />
               </motion.a>
             </div>
           </GlossyCard>

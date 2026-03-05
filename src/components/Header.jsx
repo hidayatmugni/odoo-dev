@@ -13,80 +13,134 @@ export default function Header({
   const { contact } = useContext(AppContext);
 
   const whatsappNumber = contact.phone?.replace("+", "").replace(/\s/g, "");
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20Mugni%2C%20I%27m%20interested%20in%20your%20Odoo%20services.`;
+  const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
   return (
     <motion.header
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      // Perbaikan Layout: justify-between agar tidak menumpuk di kanan
-      className="flex flex-col md:flex-row justify-between items-center gap-8 p-8 md:p-12 rounded-[2rem] card-gloss glass-border relative overflow-hidden transition-all duration-500 bg-black/40 backdrop-blur-xl shadow-2xl"
+      className="
+      relative overflow-hidden
+      flex flex-col md:flex-row
+      items-center md:items-center
+      justify-between
+      gap-8
+      p-6 md:p-12
+      rounded-[2rem]
+      bg-black/40
+      backdrop-blur-2xl
+      border border-white/10
+      shadow-[0_20px_60px_rgba(0,0,0,0.7)]
+      "
     >
-      {/* Bagian Kiri: Foto & Identitas */}
-      <div className="flex items-center flex-col md:flex-row gap-8 text-center md:text-left z-10">
+
+      {/* LEFT SIDE */}
+      <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 text-center md:text-left z-10">
+
         <div className="relative group">
           <img
             src={photo}
             alt={name}
-            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-white/50 dark:border-white/10 shadow-2xl transition-transform duration-500 group-hover:scale-105"
+            className="
+            w-24 h-24
+            md:w-40 md:h-40
+            rounded-full
+            object-cover
+            border border-white/20
+            shadow-[0_10px_40px_rgba(0,0,0,0.6)]
+            "
           />
-          {/* Efek Glow di belakang foto */}
-          <div className="absolute inset-0 rounded-full bg-accent-teal/20 dark:bg-accent-teal/20 blur-2xl -z-10 group-hover:bg-accent-teal/40 dark:group-hover:bg-accent-teal/40 transition-colors" />
+
+          <div className="absolute inset-0 rounded-full bg-accent-teal/30 blur-3xl opacity-40 -z-10" />
         </div>
 
-        <div className="space-y-2 dark:text-white">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter text-gray-900 dark:text-white leading-tight transition-colors duration-300">
+        <div className="space-y-2">
+
+          <h1 className="
+          text-3xl
+          md:text-6xl
+          font-extrabold
+          tracking-tight
+          text-white
+          ">
             {name}
           </h1>
-          <p className="text-lg md:text-xl font-medium text-gray-600 dark:text-gray-300 mt-2 transition-colors duration-300">
+
+          <p className="
+          text-sm
+          md:text-xl
+          text-gray-300
+          max-w-md
+          ">
             {title}
           </p>
-          
-          {/* Badge Status Glossy */}
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
-            className="inline-flex items-center mt-4 gap-2 px-4 py-1.5 rounded-full bg-green-500/10 dark:bg-green-600/20 border border-green-500/20 dark:border-green-500/30 text-green-700 dark:text-green-300 text-sm font-bold shadow-lg transition-colors duration-300"
-          >
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+
+          <div className="
+          inline-flex items-center
+          mt-3
+          gap-2
+          px-3 py-1
+          rounded-full
+          text-xs md:text-sm
+          font-semibold
+          text-green-300
+          bg-green-500/10
+          border border-green-400/20
+          backdrop-blur-md
+          ">
+            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"/>
             Available for Projects
-          </motion.div>
+          </div>
+
         </div>
       </div>
 
-      {/* Bagian Kanan: Actions (Button) */}
-      <div className="flex flex-col sm:flex-row items-center gap-4 z-10">
+      {/* RIGHT SIDE */}
+      <div className="flex items-center gap-4 z-10">
+
+        {/* WhatsApp Button */}
         <motion.a
           href={whatsappLink}
           target="_blank"
           rel="noreferrer"
-          whileHover={{ scale: 1.05, y: -2 }}
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-gray-900 text-white font-bold text-lg shadow-xl hover:shadow-lg transition-all duration-300"
+          className="
+          flex items-center justify-center
+          gap-2
+          h-11 md:h-12
+          px-5 md:px-7
+          rounded-xl md:rounded-2xl
+          font-semibold
+          text-sm md:text-base
+          text-accent-teal
+          bg-gradient-to-b from-white/30 via-white/10 to-transparent
+          border border-white/10
+          backdrop-blur-xl
+          shadow-[inset_0_2px_4px_rgba(255,255,255,0.6),0_10px_30px_rgba(0,0,0,0.7)]
+          "
         >
-          <div className="flex items-center gap-2 white dark:text-gray-900 text-sm font-medium">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+            alt="WhatsApp"
+            className="w-4 h-4"
+          />
 
-              <img 
-                src="https://cdn-icons-png.flaticon.com/512/733/733585.png" 
-                alt="WhatsApp" 
-                className="w-4 h-4 invert dark:invert-0 transition-filter duration-300" 
-                />
-                <span className="hidden sm:inline font-lg text-white dark:text-gray-300 transition-colors duration-300">
-                Let's Talk
-                </span>
-          </div>
+          <span>
+            Let's Talk
+          </span>
         </motion.a>
 
-        <div className="p-1 rounded-2xl bg-white/5 border border-gray-200 backdrop-blur-md transition-colors duration-300">
-          <ShareButton />
-        </div>
+        {/* Share Button */}
+        <ShareButton />
+
       </div>
 
-      {/* Dekorasi Background Mewah (Subtle Glow) */}
-      <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent-teal/10 rounded-full blur-[100px]" />
-      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px]" />
+      {/* BACKGROUND GLOW */}
+      <div className="absolute -top-32 -right-32 w-[400px] h-[400px] bg-accent-teal/10 rounded-full blur-[120px]" />
+      <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[120px]" />
+
     </motion.header>
   );
 }
