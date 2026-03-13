@@ -13,83 +13,79 @@ const links = [
 export default function Navbar() {
   return (
     <motion.nav
-      initial={{ opacity: 0, y: -20 }}
+      initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed top-4 left-0 right-0 z-[999] px-3"
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="fixed top-6 left-0 right-0 z-[999] px-4"
     >
-      <div className="max-w-5xl mx-auto">
-        <div className="card-gloss backdrop-blur-2xl bg-black/60 border border-gray-200/30 
-        dark:border-white/10 shadow-lg dark:shadow-2xl rounded-[2rem]
-        px-4 md:px-6 py-2 md:py-3 flex items-center justify-between">
+      <div className="max-w-fit mx-auto">
+        <div className="
+          relative overflow-hidden
+          flex items-center justify-center
+          bg-[#050505]/60 backdrop-blur-2xl
+          border border-white/10
+          rounded-[2rem]
+          px-2 py-2
+          shadow-[0_20px_50px_rgba(0,0,0,0.5)]
+        ">
+          
+          {/* 1. BACKGROUND BINTIK-BINTIK (Sync with Header) */}
+          <div 
+            className="absolute inset-0 opacity-[0.2] pointer-events-none" 
+            style={{ 
+              backgroundImage: `radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)`, 
+              backgroundSize: '20px 20px' 
+            }} 
+          />
 
-          {/* Logo */}
-          <div className="flex items-center gap-2 md:gap-3">
-            <div className="relative group">
-              <img
-                src="../assets/logo.jpeg"
-                alt="logo"
-                className="w-8 h-8 md:w-10 md:h-10 rounded-xl object-cover border-2 border-accent-teal/20 
-                group-hover:scale-110 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 rounded-xl bg-accent-teal/20 blur group-hover:blur-md transition-all" />
-            </div>
+          {/* 2. GLOSSY OVERLAY LINE */}
+          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
-            {/* Hide text on mobile */}
-            <div className="hidden md:block">
-              <div className="font-bold text-lg tracking-tight text-gray-900 dark:text-white leading-none">
-                Mugni Hidayat
-              </div>
-              <div className="text-[10px] uppercase tracking-widest font-semibold text-accent-teal mt-1">
-                Odoo Specialist
-              </div>
-            </div>
-          </div>
-
-          {/* Menu */}
-          <div className="
-          flex items-center
-          gap-1 md:gap-2
-          bg-white/5
-          p-1
-          rounded-full
-          border border-gray-200/40">
-
+          {/* 3. NAVIGATION LINKS */}
+          <div className="relative z-10 flex items-center gap-1 md:gap-2">
             {links.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
-                className={({ isActive }) =>
-                `
-                text-[11px] md:text-sm
-                px-2 md:px-5
-                py-1 md:py-2
-                rounded-full
-                font-semibold
-                transition-all duration-300
-                backdrop-blur-md
-                ${
-                  isActive
-                ? `
-                text-accent-teal
-                bg-gradient-to-b from-white/35 via-white/10 to-transparent
-                backdrop-blur-xl
-                shadow-[
-                  inset_0_2px_4px_rgba(255,255,255,0.7),
-                  inset_0_-6px_10px_rgba(255,255,255,0.08),
-                  0_10px_30px_rgba(0,0,0,0.6),
-                  0_0_10px_rgba(20,184,166,0.25)
-                ]
-                `
-                : "text-gray-300 hover:text-white hover:bg-white/5"
-                }
-                `
-              }
+                className={({ isActive }) => `
+                  relative
+                  text-[11px] md:text-xs
+                  px-5 md:px-7
+                  py-2 md:py-2.5
+                  rounded-full
+                  font-black
+                  uppercase
+                  tracking-[0.15em]
+                  transition-all duration-500
+                  ${isActive 
+                    ? "text-white" 
+                    : "text-white/40 hover:text-white/80"
+                  }
+                `}
               >
-                {link.label}
+                {({ isActive }) => (
+                  <>
+                    {/* Background Active (The Glossy Pill) */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="nav-active"
+                        className="
+                          absolute inset-0 
+                          bg-gradient-to-b from-white/15 via-white/5 to-transparent
+                          border border-white/10
+                          backdrop-blur-xl
+                          rounded-full
+                          shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_10px_20px_rgba(0,0,0,0.3)]
+                        "
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{link.label}</span>
+                  </>
+                )}
               </NavLink>
             ))}
           </div>
-
         </div>
       </div>
     </motion.nav>

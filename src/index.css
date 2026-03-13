@@ -23,8 +23,6 @@
 }
 
 /* ========== BODY & BASE STYLES ========== */
-s
-
 html, body {
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
@@ -165,7 +163,33 @@ html.dark .glass-border {
     0 0 30px rgba(23, 162, 184, 0.4);
   transform: translateY(-4px);
 }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.card-gloss::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255,255,255,0.08),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.card-gloss:hover::before {
+  opacity: 1;
+}
 /* ========== PINK VARIANT ========== */
 .card-gloss-pink {
   border-color: rgba(236, 72, 153, 0.3);

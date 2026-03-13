@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ModuleMarquee from "../components/ModuleMarquee";
-import GlossyCard from "../components/GlossyCard";
 
 const services = [
   {
@@ -15,6 +14,8 @@ const services = [
       "Create scalable and maintainable solutions",
     ],
     quote: "Because every business deserves systems built for its reality.",
+    color: "border-emerald-500/30",
+    glow: "group-hover:bg-emerald-500/10"
   },
   {
     id: 2,
@@ -26,6 +27,8 @@ const services = [
       "Improve system accuracy and efficiency",
     ],
     quote: "Automation isn't luxury — it's operational survival.",
+    color: "border-green-500/30",
+    glow: "group-hover:bg-green-500/10"
   },
   {
     id: 3,
@@ -37,6 +40,8 @@ const services = [
       "Enable better decision making through structured data",
     ],
     quote: "Good decisions start with good data.",
+    color: "border-orange-500/30",
+    glow: "group-hover:bg-orange-500/10"
   },
   {
     id: 4,
@@ -48,6 +53,8 @@ const services = [
       "Ensure consistent data flow across platforms",
     ],
     quote: "Your systems should talk — not conflict.",
+    color: "border-purple-500/30",
+    glow: "group-hover:bg-purple-500/10"
   },
   {
     id: 5,
@@ -59,6 +66,8 @@ const services = [
       "Enhance system usability for teams",
     ],
     quote: "A better system is often the same one — just optimized.",
+    color: "border-pink-500/30",
+    glow: "group-hover:bg-pink-500/10"
   },
 ];
 
@@ -66,101 +75,122 @@ export default function Services() {
   const [selected, setSelected] = useState(null);
 
   const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 30 },
     visible: (i = 1) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" },
+      transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
     }),
   };
 
   return (
-    <motion.div className="bg-black/60 backdrop-blur-xl rounded-3xl p-6 md:p-8 transition-colors duration-400" initial="hidden" animate="visible" variants={fadeUp}>
-
-      <motion.div variants={fadeUp} custom={0} className="text-center space-y-2 mb-10">
-        <h1 className="text-3xl md:text-4xl font-bold">
+    <motion.div 
+      className="bg-[#050505] min-h-screen rounded-[2.5rem] p-6 md:p-12 border border-white/5 shadow-2xl overflow-hidden" 
+      initial="hidden" 
+      animate="visible" 
+      variants={fadeUp}
+    >
+      {/* Header */}
+      <motion.div variants={fadeUp} custom={0} className="text-center space-y-4 mb-12">
+        <h1 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter text-white">
           Services
         </h1>
-        <p className="text-muted text-sm md:text-base max-w-2xl mx-auto">
-          Explore how I help businesses improve operations through Odoo customization and automation.
+        <p className="text-white/40 text-xs md:text-sm font-bold uppercase tracking-[0.3em] max-w-2xl mx-auto leading-relaxed">
+          Operational Excellence Through Technical Precision
         </p>
       </motion.div>
 
-      <motion.div variants={fadeUp} custom={1} className="space-y-3 lg:mb-10">
+      {/* Marquee Section (Solid Background) */}
+      <motion.div variants={fadeUp} custom={1} className="space-y-3 mb-16 opacity-80">
         <ModuleMarquee speed="slow" />
         <ModuleMarquee reverse speed="slow" />
       </motion.div>
 
+      {/* Grid Cards */}
       <motion.div
         variants={fadeUp}
         custom={2}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
       >
-        {services.map((service, i) => {
-          const accentVariants = ["teal", "orange", "purple", "blue", "pink"];
-          const accent = accentVariants[i % accentVariants.length];
-          
-          return (
-            <GlossyCard
-              key={service.id}
-              accent={accent}
-              elevated
-              className="p-6 cursor-pointer transition-all duration-300"
-              onClick={() => setSelected(service)}
-              custom={i + 3}
-              variants={fadeUp}
-            >
-              <h3 className="text-lg md:text-xl font-semibold mb-2 text-text dark:text-white">
+        {services.map((service, i) => (
+          <motion.div
+            key={service.id}
+            variants={fadeUp}
+            custom={i + 3}
+            onClick={() => setSelected(service)}
+            className={`
+              group relative p-8 rounded-3xl bg-[#0a0a0a] border border-white/5 
+              cursor-pointer transition-all duration-500 
+              hover:bg-[#0f0f0f] hover:${service.color}
+              flex flex-col justify-between h-[280px]
+            `}
+          >
+            {/* Subtle Glow Background on Hover */}
+            <div className={`absolute inset-0 rounded-3xl transition-all duration-500 ${service.glow} opacity-0 group-hover:opacity-100`} />
+            
+            <div className="relative z-10">
+              <h3 className="text-xl font-black text-white uppercase tracking-tight mb-4 italic">
                 {service.title}
               </h3>
-              <p className="text-sm text-muted leading-relaxed mb-3">
+              <p className="text-sm text-white/40 leading-relaxed line-clamp-3 font-medium">
                 {service.summary}
               </p>
-              <p className="text-xs italic text-text/40 dark:text-white/40 mt-auto">Tap to read more</p>
-            </GlossyCard>
-          );
-        })}
+            </div>
+
+            <div className="relative z-10 flex items-center gap-2 mt-4">
+              <span className="text-[10px] font-black text-green-500 uppercase tracking-widest">View Details</span>
+              <div className="h-[1px] w-8 bg-green-500/30" />
+            </div>
+          </motion.div>
+        ))}
       </motion.div>
 
+      {/* Modal Section (Solid No-Blur Modal) */}
       <AnimatePresence>
         {selected && (
-          <motion.div className="fixed inset-0 bg-black/40 backdrop-blur-lg flex items-center justify-center z-[9999] px-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div
-              className="absolute inset-0"
-              onClick={() => setSelected(null)}
-            ></div>
+          <motion.div 
+            className="fixed inset-0 bg-black/90 z-[9999] grid place-items-center p-4" 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }}
+          >
+            <div className="absolute inset-0" onClick={() => setSelected(null)} />
 
-            <motion.div initial={{ scale: 0.9, opacity: 0, y: 30 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 30 }} transition={{ duration: 0.4, ease: "easeOut" }} className="relative w-full max-w-[650px]">
-              <GlossyCard accent="pink" elevated className="p-6 relative bg-black/80">
-                <button
-                  onClick={() => setSelected(null)}
-                  className="absolute top-3 right-3 text-text/50 dark:text-white/50 hover:text-text dark:hover:text-white text-xl transition-colors duration-300"
-                  aria-label="Close modal"
-                >
-                  ✕
-                </button>
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0 }} 
+              animate={{ scale: 1, opacity: 1 }} 
+              exit={{ scale: 0.95, opacity: 0 }} 
+              className="relative w-full max-w-[600px] bg-[#0a0a0a] border border-white/10 rounded-[2.5rem] p-8 md:p-12 shadow-[0_0_100px_rgba(0,0,0,1)]"
+            >
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute top-6 right-8 text-white/20 hover:text-white text-2xl transition-all"
+              >
+                ✕
+              </button>
 
-                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-text dark:text-white">
-                  {selected.title}
-                </h3>
-                <p className="text-text/70 dark:text-muted mb-4">{selected.summary}</p>
+              <h3 className="text-3xl font-black text-white italic uppercase tracking-tighter mb-6 leading-none">
+                {selected.title}
+              </h3>
+              
+              <p className="text-white/60 mb-8 leading-relaxed font-medium">{selected.summary}</p>
 
-                <ul className="list-disc pl-5 text-sm text-text/70 dark:text-muted space-y-1">
-                  {selected.points.map((p, i) => (
-                    <li key={i}>{p}</li>
-                  ))}
-                </ul>
+              <div className="space-y-3 mb-8">
+                {selected.points.map((p, i) => (
+                  <div key={i} className="flex items-center gap-4 text-sm text-white/40">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                    {p}
+                  </div>
+                ))}
+              </div>
 
-                <blockquote className="mt-4 text-muted italic text-sm border-l-2 pl-3" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
-                  {selected.quote}
-                </blockquote>
-              </GlossyCard>
+              <blockquote className="p-6 rounded-2xl bg-white/[0.02] border-l-4 border-green-500 text-white/40 italic text-sm">
+                "{selected.quote}"
+              </blockquote>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-      {/* </div> */}
-
     </motion.div>
   );
 }
