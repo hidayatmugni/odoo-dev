@@ -6,6 +6,7 @@ import ContactCard from "../components/ContactCard";
 import Footer from "../components/Footer";
 import GlossyCard from "../components/GlossyCard";
 import { useNavigate } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -25,111 +26,116 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex justify-center">
+    <div className="relative min-h-screen w-full flex justify-center pb-20">
       <motion.div
-        className="relative z-10 w-full max-w-6xl px-4 md:px-0 space-y-8 md:space-y-10"
+        className="relative z-10 w-full max-w-6xl px-0 md:px-0 space-y-6 md:space-y-8"
         initial="hidden"
         animate="show"
-        variants={{ show: { transition: { staggerChildren: 0.2 } } }}
+        variants={{ show: { transition: { staggerChildren: 0.15 } } }}
       >
         {/* 1. HEADER */}
         <motion.div variants={fadeUp}>
           <Header />
         </motion.div>
 
-        {/* 2. ABOUT + CONTACT GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-6 md:gap-8 items-stretch">
+        {/* 2. CORE GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           
-          {/* ABOUT CARD - Sekarang pakai Standard GlossyCard */}
-          <motion.div variants={fadeUp} className="h-full">
+          {/* LEFT: BIOGRAPHY */}
+          <motion.div variants={fadeUp} className="lg:col-span-8">
             <GlossyCard
-              accent="emerlad"
+              accent="blue"
               elevated
-              className="h-full p-8 md:p-10 flex flex-col justify-between group"
+              /* Gue tambahin ! supaya class background lo menang mutlak */
+              className="h-full p-8 md:p-12 flex flex-col justify-between group relative overflow-hidden !bg-[#0a0a0a]/80"
             >
-              <div className="space-y-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-[2px] bg-green-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
-                  <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white italic">
-                    About Me
-                  </h2>
+              {/* Watermark Background */}
+              <div className="absolute -bottom-4 -right-4 text-9xl font-black text-white/[0.02] italic select-none pointer-events-none">
+                ABOUT
+              </div>
+
+              <div className="relative z-10 space-y-8">
+                <div className="flex items-center gap-4">
+                  <span className="text-blue-500 font-black uppercase tracking-[0.4em] text-[10px]">Introduction</span>
+                  <div className="h-[1px] flex-1 bg-white/10" />
                 </div>
 
-                <div className="space-y-4 text-white/60 text-sm md:text-lg leading-relaxed font-light">
+                <h2 className="text-3xl md:text-5xl font-black text-white uppercase italic tracking-tighter leading-none">
+                  Engineering <span className="text-blue-600">Precision</span> <br/> 
+                  In Every Workflow.
+                </h2>
+
+                <div className="space-y-6 text-white/50 text-base md:text-xl leading-relaxed font-medium max-w-2xl">
                   <p>
-                    I’m <span className="text-white font-bold italic">Mugni Hidayat</span> — an 
-                    <span className="text-green-400 font-medium"> Odoo Developer</span> dedicated to engineering 
-                    bespoke ERP ecosystems.
+                    I’m <span className="text-white font-bold">Mugni Hidayat</span> — an independent Odoo Consultant specializing in the architecture of complex business systems.
                   </p>
-                  <p>
-                    From <span className="text-white/80">custom module architecture</span> to 
-                    <span className="text-white/80"> intelligent workflow automation</span>, I build tools that empower 
-                    clarity and scale efficiency.
+                  <p className="text-sm md:text-lg border-l-2 border-blue-600/30 pl-6 italic">
+                    I transform operational chaos into automated excellence, building scalable ERP solutions that act as the backbone for global business growth.
                   </p>
                 </div>
               </div>
 
-              <div className="mt-10">
+              <div className="relative z-10 mt-12">
                 <button
                   onClick={() => handleNavigate("/about")}
-                  className="
-                    relative overflow-hidden
-                    px-8 py-3 rounded-xl
-                    text-[10px] md:text-xs font-black text-white/90
-                    bg-gradient-to-br from-green-500/20 to-black/20
-                    border border-white/10 backdrop-blur-md
-                    shadow-[0_8px_20px_rgba(0,0,0,0.4)]
-                    uppercase tracking-[0.2em]
-                    transition-all duration-500
-                    group/btn
-                  "
+                  className="group/btn flex items-center gap-4 text-white/90"
                 >
-                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 ease-in-out" />
-                  <span className="relative z-10 flex items-center gap-2">Explore Biography →</span>
+                  <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] border-b border-blue-500/50 pb-1 group-hover/btn:text-blue-400 group-hover/btn:border-blue-400 transition-all">
+                    Read Full Biography
+                  </span>
+                  <div className="p-3 rounded-full bg-white/5 border border-white/10 group-hover/btn:bg-blue-600 group-hover/btn:text-white transition-all duration-500">
+                    <FaArrowRight className="text-sm -rotate-45 group-hover/btn:rotate-0 transition-transform" />
+                  </div>
                 </button>
               </div>
             </GlossyCard>
           </motion.div>
 
-          {/* CONTACT CARD - Sudah dibungkus GlossyCard di dalamnya */}
-          <motion.div variants={fadeUp}>
+          {/* RIGHT: CONNECT */}
+          <motion.div variants={fadeUp} className="lg:col-span-4">
             <ContactCard />
           </motion.div>
         </div>
 
-        {/* 3. SERVICES SECTION */}
+        {/* 3. LARGE CTA */}
         <motion.div variants={fadeUp}>
           <GlossyCard
-            accent="emerlad" // Samakan aksen biar STABIL
+            accent="blue"
             elevated
-            className="p-10 md:p-20 text-center flex flex-col items-center justify-center group"
+            className="p-10 md:p-20 text-center flex flex-col items-center justify-center group relative overflow-hidden !bg-[#0a0a0a]/80"
           >
-            <h3 className="text-4xl md:text-5xl font-black text-white uppercase italic tracking-tighter mb-8 leading-none">
-              Solutions <span className="text-emerald-400">&</span> Services
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.03] to-transparent pointer-events-none" />
+            
+            <span className="relative z-10 text-blue-500/60 font-black uppercase tracking-[0.4em] text-[9px] mb-4">
+              Expertise & Solutions
+            </span>
+            
+            <h3 className="relative z-10 text-3xl md:text-6xl font-black text-white uppercase italic tracking-tighter mb-6 leading-none">
+              Modern <span className="text-blue-600/80">ERP</span> Architecture.
             </h3>
 
-            <p className="text-white/40 text-sm md:text-xl max-w-2xl leading-relaxed font-light mb-12 tracking-wide">
-              Transforming businesses through <span className="text-white/80 font-medium italic">ERP Customization</span>, 
-              <span className="text-white/80 font-medium italic"> System Integration</span>, and 
-              <span className="text-white/80 font-medium italic"> Advanced Analytics</span>.
+            <p className="relative z-10 text-white/30 text-[11px] md:text-lg max-w-xl leading-relaxed font-medium mb-10 tracking-wide">
+              Specialized in <span className="text-white/60 font-bold italic">Custom Development</span> and 
+              <span className="text-white/60 font-bold italic"> Automated Logic</span> tailored for your business DNA.
             </p>
 
             <button
               onClick={() => handleNavigate("/services")}
               className="
-                relative overflow-hidden
-                px-12 py-5 rounded-xl
-                text-[11px] md:text-sm font-black text-white/90
-                bg-gradient-to-br from-emerald-500/20 to-black/20
-                border border-white/10 backdrop-blur-md
-                shadow-[0_15px_35px_rgba(0,0,0,0.5)]
-                uppercase tracking-[0.3em]
+                relative z-10 overflow-hidden
+                px-8 py-4 rounded-xl
+                text-[10px] md:text-xs font-black text-white/80
+                bg-white/[0.03] border border-white/10
+                hover:bg-blue-600 hover:text-white hover:border-blue-600
+                hover:shadow-[0_20px_40px_rgba(37,99,235,0.25)]
+                uppercase tracking-[0.2em]
                 transition-all duration-500
                 group/btn
               "
             >
-              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 ease-in-out" />
-              <span className="relative z-10 flex items-center gap-3">View All Capabilities →</span>
+              <span className="relative z-10 flex items-center gap-3">
+                View Capabilities <FaArrowRight className="-rotate-45 group-hover/btn:rotate-0 transition-transform text-[10px]" />
+              </span>
             </button>
           </GlossyCard>
         </motion.div>

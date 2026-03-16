@@ -18,7 +18,7 @@ createRoot(document.getElementById("root")).render(
           <div 
             className="fixed inset-0 z-0 opacity-[0.25] pointer-events-none" 
             style={{ 
-              backgroundImage: `radial-gradient(circle at 1.5px 1.5px, #f0f0f0 1.5px, transparent 0)`, 
+              backgroundImage: `radial-gradient(circle at 1.5px 1.5px, #d0cfcf 1px, transparent 0)`, 
               backgroundSize: '24px 24px' 
             }} 
           />

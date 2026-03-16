@@ -12,7 +12,7 @@ export default function Footer() {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
       viewport={{ once: true }}
-      className="mt-20 mb-10 px-4 md:px-0"
+      className="mt-8 md:mt-10 mb-10 px-0 md:px-0"
     >
       <GlossyCard accent="blue" className="p-8 md:p-12 overflow-hidden">
         <div className="flex flex-col items-center text-center space-y-8">

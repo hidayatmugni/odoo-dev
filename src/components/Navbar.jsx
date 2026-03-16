@@ -13,71 +13,58 @@ const links = [
 export default function Navbar() {
   return (
     <motion.nav
-      initial={{ opacity: 0, y: -30 }}
+      initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="fixed top-6 left-0 right-0 z-[999] px-4"
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-4 md:top-6 left-0 right-0 z-[999] px-4"
     >
       <div className="max-w-fit mx-auto">
         <div className="
-          relative overflow-hidden
+          relative
           flex items-center justify-center
-          bg-[#050505]/60 backdrop-blur-2xl
+          bg-[#050505]/40 backdrop-blur-xl
           border border-white/10
-          rounded-[2rem]
-          px-2 py-2
-          shadow-[0_20px_50px_rgba(0,0,0,0.5)]
+          rounded-full
+          p-1 md:p-1.5
+          shadow-[0_20px_50px_rgba(0,0,0,0.3)]
         ">
           
-          {/* 1. BACKGROUND BINTIK-BINTIK (Sync with Header) */}
-          <div 
-            className="absolute inset-0 opacity-[0.2] pointer-events-none" 
-            style={{ 
-              backgroundImage: `radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)`, 
-              backgroundSize: '20px 20px' 
-            }} 
-          />
-
-          {/* 2. GLOSSY OVERLAY LINE */}
-          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-          {/* 3. NAVIGATION LINKS */}
-          <div className="relative z-10 flex items-center gap-1 md:gap-2">
+          {/* NAVIGATION LINKS */}
+          <div className="relative z-10 flex items-center gap-0.5 md:gap-1">
             {links.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 className={({ isActive }) => `
                   relative
-                  text-[11px] md:text-xs
-                  px-5 md:px-7
-                  py-2 md:py-2.5
+                  text-[9px] md:text-[11px]
+                  /* Padding Mobile dikecilkan dari px-5 jadi px-3 */
+                  px-3.5 md:px-8
+                  py-1.5 md:py-2.5
                   rounded-full
-                  font-black
+                  font-bold
                   uppercase
-                  tracking-[0.15em]
+                  tracking-[0.15em] md:tracking-[0.2em]
                   transition-all duration-500
                   ${isActive 
                     ? "text-white" 
-                    : "text-white/40 hover:text-white/80"
+                    : "text-white/40 hover:text-white/70"
                   }
                 `}
               >
                 {({ isActive }) => (
                   <>
-                    {/* Background Active (The Glossy Pill) */}
+                    {/* Active Indicator */}
                     {isActive && (
                       <motion.div
                         layoutId="nav-active"
                         className="
                           absolute inset-0 
-                          bg-gradient-to-b from-white/15 via-white/5 to-transparent
+                          bg-white/[0.08] 
                           border border-white/10
-                          backdrop-blur-xl
                           rounded-full
-                          shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_10px_20px_rgba(0,0,0,0.3)]
                         "
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 35 }}
                       />
                     )}
                     <span className="relative z-10">{link.label}</span>
