@@ -9,8 +9,6 @@ import {
   FaClock,
   FaUserTie,
   FaLaptopCode,
-  FaChalkboardTeacher,
-  FaLightbulb,
   FaStore,
 } from "react-icons/fa";
 import { MdWorkOutline } from "react-icons/md";
@@ -28,30 +26,44 @@ const modules = [
   { icon: <FaClock className="text-sky-300" />, label: "Timesheet" },
   { icon: <FaUserTie className="text-amber-400" />, label: "HR" },
   { icon: <MdWorkOutline className="text-violet-300" />, label: "Recruitment" },
-  { icon: <FaLaptopCode className="text-gray-400 dark:text-gray-300" />, label: "Technical" },
-  // { icon: <FaChalkboardTeacher className="text-rose-400" />, label: "Training" },
-  // { icon: <FaLightbulb className="text-lime-400" />, label: "Strategy" },
+  { icon: <FaLaptopCode className="text-gray-400" />, label: "Technical" },
 ];
 
-export default function ModuleMarquee({ reverse = false, speed = "normal" }) {
+export default function ModuleMarquee({ reverse = false, speed = "slow" }) {
   const speedMap = {
-    slow: "35s",
-    normal: "25s",
-    fast: "15s",
+    slow: "40s",
+    normal: "30s",
+    fast: "20s",
   };
 
-  const duration = speedMap[speed] || "25s";
+  const duration = speedMap[speed] || "30s";
 
   return (
-    <div className="overflow-hidden w-full">
+    <div className="group relative flex overflow-hidden p-2">
       <div
-        className={`flex gap-4 w-max ${reverse ? "animate-marquee-reverse" : "animate-marquee"}`}
+        className={`flex min-w-full shrink-0 gap-6 items-center justify-around ${
+          reverse ? "animate-marquee-reverse" : "animate-marquee"
+        }`}
         style={{ animationDuration: duration }}
       >
+        {/* Kita render 2 kali agar looping tidak putus */}
         {[...modules, ...modules].map((m, i) => (
-          <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-2xl card-gloss glass-border shadow-[0_4px_20px_rgba(0,0,0,0.35)] hover:scale-105 transition-all duration-300">
-            <span className="text-base text-muted">{m.icon}</span>
-            <span className="text-sm text-muted font-medium">{m.label}</span>
+          <div 
+            key={i} 
+            className="
+              flex items-center gap-3 px-5 py-2.5 
+              rounded-xl 
+              bg-white/[0.03] border border-white/10
+              hover:bg-white/[0.08] hover:border-white/20
+              transition-all duration-300 group/item
+            "
+          >
+            <span className="text-lg filter drop-shadow-[0_0_8px_rgba(255,255,255,0.1)] group-hover/item:scale-110 transition-transform">
+              {m.icon}
+            </span>
+            <span className="text-[11px] md:text-xs text-white/60 font-black uppercase tracking-widest whitespace-nowrap">
+              {m.label}
+            </span>
           </div>
         ))}
       </div>

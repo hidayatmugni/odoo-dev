@@ -4,35 +4,57 @@ import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
 import "./index.css";
 import { AppProvider } from "./context/AppContext";
-import ScrollToTop from "./components/ScrollToTop.";
+import ScrollToTop from "./components/ScrollToTop."; // Fix typo titik
 import DevelopmentBanner from "./components/DevelopmentBanner";
-// test
+import FloatingSound from "./components/FloatingSound";
+
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AppProvider>
       <BrowserRouter>
-        <DevelopmentBanner />
-        {/* Background Wrapper dengan Logic Theme */}
-        <div className="relative min-h-screen transition-colors duration-700 bg-black">
+        <div className="relative min-h-screen bg-[#010101] selection:bg-blue-500/30 text-white overflow-x-hidden">
 
-          {/* Luxury Aura Glow - Lebih Colorful dan Hidup */}
-          <div className="fixed inset-0 overflow-hidden pointer-events-none">
-            {/* Glow Oranye (Newsletter Vibes) */}
-            <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[700px] bg-orange-500/20 dark:bg-orange-600/20 blur-[140px] rounded-full animate-pulse" />
+          {/* LAYER 1: THE GRID (White base dots) */}
+          <div 
+            className="fixed inset-0 z-0 opacity-[0.25] pointer-events-none" 
+            style={{ 
+              backgroundImage: `radial-gradient(circle at 1.5px 1.5px, #d0cfcf 1px, transparent 0)`, 
+              backgroundSize: '24px 24px' 
+            }} 
+          />
+
+          {/* LAYER 2: GRID COLOR OVERLAY (Ini yang bikin bintik-bintiknya berwarna gradient mewah) */}
+          <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.4]"
+               style={{
+                 background: `linear-gradient(to bottom right, 
+                              rgba(59, 130, 246, 0.2), 
+                              transparent, 
+                              rgba(147, 51, 234, 0.1))`
+               }} />
+
+          {/* LAYER 3: LUXURY AURA (Glow Spotlights) */}
+          <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+            {/* Blue Spotlight Atas */}
+            <div className="absolute top-[-25%] left-1/2 -translate-x-1/2 w-[1400px] h-[800px] 
+                            bg-blue-600/[0.08] blur-[160px] rounded-full" />
             
-            {/* Glow Biru (Tools Vibes) */}
-            <div className="absolute top-[30%] right-[-5%] w-[500px] h-[500px] bg-blue-500/20 dark:bg-blue-700/35 blur-[120px] rounded-full" />
-            
-            {/* Glow Hijau (Insights Vibes) */}
-            <div className="absolute bottom-[-10%] left-[20%] w-[700px] h-[700px] bg-emerald-500/20 dark:bg-emerald-700/30 blur-[170px] rounded-full" />
+            {/* Purple Accent Kanan Bawah */}
+            <div className="absolute bottom-[-15%] -right-[10%] w-[900px] h-[900px] 
+                            bg-purple-600/[0.07] blur-[180px] rounded-full" />
           </div>
 
-          {/* Content Layer */}
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-10">
+          {/* LAYER 4: DYNAMIC SCANLINE (Efek garis bergerak halus biar makin 'tech') */}
+          <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(to_bottom,transparent_50%,#fff_50%)] bg-[length:100%_4px]" />
+
+          {/* LAYER 5: VIGNETTE */}
+          <div className="fixed inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.8)_100%)] pointer-events-none" />
+
+          {/* CONTENT LAYER */}
+          <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 pt-12 pb-10">
             <ScrollToTop />
             <AppRoutes />
           </div>
-
+              <FloatingSound />
         </div>
       </BrowserRouter>
     </AppProvider>

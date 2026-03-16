@@ -2,12 +2,10 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { AppContext } from "../context/AppContext";
-import { FaPhoneAlt, FaLinkedin, FaGlobe } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa6";
+import { FaPhoneAlt, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaInstagram, FaArrowRight } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import GlossyCard from "../components/GlossyCard";
-import ContactCard from "../components/ContactCard";
-import { FaGithub } from "react-icons/fa";
 
 export default function Contact() {
   const { contact } = useContext(AppContext);
@@ -17,233 +15,105 @@ export default function Contact() {
       label: "WhatsApp",
       value: contact.phone,
       href: `https://wa.me/${contact.phone.replace(/\D/g, "")}`,
-      icon: <FaPhoneAlt className="text-green-400 w-5 h-5" />,
+      icon: <FaPhoneAlt className="text-emerald-400 w-4 h-4 md:w-5 md:h-5" />,
+      glow: "group-hover/item:border-emerald-500/30"
     },
-    // {
-    //   label: "Instagram",
-    //   value: `@${contact.instagram}`,
-    //   href: contact.instagram
-    //     ? `https://www.instagram.com/${contact.instagram}`
-    //     : "#",
-    //   icon: (
-    //     <FaInstagram className="w-5 h-5" />
-    //   ),
-    // },
     {
       label: "LinkedIn",
-      value: "LinkedIn Profile",
+      value: "Mugni Hidayat",
       href: contact.linkedin,
-      icon: <FaLinkedin className="text-blue-400 w-5 h-5" />,
+      icon: <FaLinkedin className="text-blue-400 w-4 h-4 md:w-5 md:h-5" />,
+      glow: "group-hover/item:border-blue-500/30"
     },
     {
       label: "Email",
       value: contact.email,
       href: `mailto:${contact.email}`,
-      icon: <MdEmail className="text-red-400 w-5 h-5" />,
+      icon: <MdEmail className="text-rose-400 w-4 h-4 md:w-5 md:h-5" />,
+      glow: "group-hover/item:border-rose-500/30"
     },
   ];
 
-  const fadeUp = {
-    hidden: { opacity: 0, y: 25 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
-  const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.15 } },
-  };
-
   return (
-    <motion.div
-      className="space-y-10 md:space-y-10 text-text transition-colors duration-400 bg-black/60 backdrop-blur-xl rounded-3xl p-6 md:p-8"
-      initial="hidden"
-      animate="show"
-      variants={container}
+    <motion.div 
+      className="space-y-6 md:space-y-10 mt-6 md:mt-16"
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }}
     >
-      {/* INTRO */}
-      <motion.div variants={fadeUp} className="flex flex-col">
-        <GlossyCard accent="teal" elevated className="p-8 md:p-12 text-center md:text-left">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Let’s Build Something Scalable
+      {/* 1. HERO SECTION - Scalable Font for Mobile */}
+      <GlossyCard accent="purple" className="p-6 md:p-20 !bg-[#0a0a0a]/70 border-white/10">
+        <div className="max-w-4xl relative z-10">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black italic uppercase tracking-tighter text-white leading-[0.9] mb-4 md:mb-8">
+            Let’s Build <br className="hidden md:block"/> Something <span className="text-violet-500">Epic.</span>
           </h2>
-
-          <p className="text-lg text-text/70 max-w-2xl">
-            I help businesses implement structured, scalable Odoo systems
-            tailored to real operational needs — not generic templates.
+          <p className="text-sm md:text-2xl text-white/40 font-medium leading-relaxed max-w-2xl border-l border-violet-500/30 pl-4 md:pl-6">
+            Stop using generic ERP templates. Let's engineer a system that actually follows your business logic.
           </p>
+        </div>
+        
+        {/* Background Accent */}
+        <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-full bg-gradient-to-l from-violet-600/[0.05] to-transparent pointer-events-none" />
+      </GlossyCard>
 
-          <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
-            <span className="badge-status badge-done">Custom Modules</span>
-            <span className="badge-status badge-progress">Workflow Automation</span>
-            <span className="badge-status badge-review">ERP Optimization</span>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+        {/* 2. CONTACT LIST - Balanced Spacing */}
+        <div className="lg:col-span-5 space-y-4 md:space-y-6">
+          <h3 className="text-[12px] md:text-[14px] font-black uppercase tracking-[0.5em] text-white ml-2">Quick Connect</h3>
+          {contactItems.map((item) => (
+            <a 
+              key={item.label}
+              href={item.href}
+              className={`group/item flex items-center justify-between p-4 md:p-6 rounded-2xl md:rounded-3xl bg-black/50 border border-white/15 transition-all duration-500 ${item.glow} hover:bg-white/[0.04]`}
+            >
+              <div className="flex items-center gap-4 md:gap-6">
+                <div className="p-3 md:p-4 rounded-xl md:rounded-2xl bg-black border border-white/10 group-hover/item:scale-110 transition-transform duration-500">
+                  {item.icon}
+                </div>
+                <div>
+                  <p className="text-[10px] md:text-[12px] font-black text-white/60 uppercase tracking-widest">{item.label}</p>
+                  <p className="text-xs md:text-base text-white font-bold tracking-tight">{item.value}</p>
+                </div>
+              </div>
+              <FaArrowRight className="text-white/40 group-hover/item:text-white group-hover/item:translate-x-2 transition-all text-xs md:text-base" />
+            </a>
+          ))}
+        </div>
+
+        {/* 3. THE METHOD - Compact for Mobile */}
+        <GlossyCard className="lg:col-span-7 p-6 md:p-12 !bg-[#0a0a0a]/70">
+          <div className="flex items-center gap-4 mb-8 md:mb-12">
+            <h3 className="text-lg md:text-3xl font-black italic uppercase tracking-tighter text-white">The Method</h3>
+            <div className="h-[1px] flex-1 bg-white/10" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            {[
+              { n: "I", t: "Audit", d: "Operational gap analysis & workflow mapping." },
+              { n: "II", t: "Build", d: "Custom Odoo modules & clean Python logic." },
+              { n: "III", t: "Automate", d: "Removing manual bottlenecks for good." },
+              { n: "IV", t: "Scale", d: "Ongoing support & documentation." }
+            ].map((step) => (
+              <div key={step.n} className="relative">
+                <span className="absolute -top-4 -left-1 text-4xl md:text-6xl font-black text-white/[0.06] italic">{step.n}</span>
+                <div className="relative z-10">
+                  <h4 className="text-violet-400 font-black uppercase tracking-[0.2em] text-[14px] md:text-[18px] mb-1 md:mb-2">{step.t}</h4>
+                  <p className="text-white/40 text-[12px] md:text-sm leading-relaxed">{step.d}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 md:mt-16">
+            <a 
+              href={`mailto:${contact.email}`}
+              className="group/btn w-full md:w-auto justify-center relative inline-flex items-center gap-4 px-8 py-4 md:px-10 md:py-5 bg-white text-black font-black uppercase tracking-tighter text-xs md:text-sm rounded-xl md:rounded-2xl hover:bg-violet-500 hover:text-white transition-all duration-500"
+            >
+              Start Project 
+              <FaArrowRight className="-rotate-45 group-hover/btn:rotate-0 transition-transform" />
+            </a>
           </div>
         </GlossyCard>
-      </motion.div>
-
-      {/* CONTACT SECTION */}
-      <motion.section
-        variants={container}
-        className="flex flex-col md:flex-row items-stretch gap-8 md:gap-12"
-      >
-        {/* LEFT */}
-        <motion.div variants={fadeUp} className="md:w-[35%] w-full">
-          <GlossyCard
-            accent="orange"
-            elevated
-            className="p-8 h-full flex flex-col justify-between"
-          >
-            <div>
-              <h3 className="text-2xl font-semibold mb-8">
-                Contact Information
-              </h3>
-
-              <ul className="flex flex-col gap-4">
-                {contactItems.map((item, idx) => {
-                  const itemAccents = ["teal", "purple", "blue", "pink"];
-                  const itemAccent = itemAccents[idx % itemAccents.length];
-
-                  return (
-                    <motion.div key={item.label} variants={fadeUp}>
-                      <GlossyCard accent={itemAccent} className="p-0">
-                        <li className="group relative flex items-center gap-4 px-5 py-4 list-none transition-all duration-200">
-                          <div className="flex-shrink-0 z-10">
-                            {item.icon}
-                          </div>
-
-                          <div className="flex flex-col leading-tight z-10">
-                            <span className="text-xs text-text/50 font-semibold uppercase tracking-wide">
-                              {item.label}
-                            </span>
-                            <a
-                              href={item.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-sm md:text-base font-medium hover:opacity-70 transition"
-                            >
-                              {item.value}
-                            </a>
-                          </div>
-
-                          <a
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="absolute inset-0"
-                          />
-                        </li>
-                      </GlossyCard>
-                    </motion.div>
-                  );
-                })}
-              </ul>
-
-              {/* TRUST BLOCK */}
-              <div className="mt-10 space-y-3 text-sm text-text/60">
-                <p>✔ Available for remote collaboration</p>
-                <p>✔ Average response time: &lt; 24 hours</p>
-                <p>✔ Experience in manufacturing & distribution ERP</p>
-              </div>
-            </div>
-
-            {/* SOCIAL */}
-            <div className="flex gap-4 mt-8">
-              <motion.a
-                whileHover={{ scale: 1.08 }}
-                href={contact.github}
-                target="_blank"
-                rel="noreferrer"
-                className="p-3 rounded-full border border-text/20 hover:bg-text/5 transition"
-              >
-                <FaGithub className="text-gray-200 w-5 h-5" />
-              </motion.a>
-
-              <motion.a
-                whileHover={{ scale: 1.08 }}
-                href={`https://wa.me/${contact.phone.replace(/\D/g, "")}`}
-                target="_blank"
-                rel="noreferrer"
-                className="p-3 rounded-full border border-text/20 hover:bg-text/5 transition"
-              >
-                <FaInstagram className="text-red-400 w-5 h-5" />
-              </motion.a>
-            </div>
-          </GlossyCard>
-        </motion.div>
-
-        {/* RIGHT */}
-        <motion.div variants={fadeUp} className="md:w-[65%] w-full">
-          <GlossyCard
-            accent="purple"
-            elevated
-            className="p-8 md:p-10 h-full"
-          >
-            <h3 className="text-2xl md:text-3xl font-semibold mb-8">
-              How We Can Work Together
-            </h3>
-
-            <div className="space-y-6 text-text/70 text-sm md:text-base leading-relaxed">
-              <div>
-                <strong className="block mb-1">
-                  01 · Discovery & Workflow Mapping
-                </strong>
-                Understanding your operational structure, system gaps, and
-                optimization opportunities.
-              </div>
-
-              <div>
-                <strong className="block mb-1">
-                  02 · Custom Development
-                </strong>
-                Building tailored Odoo modules aligned with real business
-                processes.
-              </div>
-
-              <div>
-                <strong className="block mb-1">
-                  03 · Integration & Automation
-                </strong>
-                Connecting systems, automating workflows, and improving
-                reporting visibility.
-              </div>
-
-              <div>
-                <strong className="block mb-1">
-                  04 · Deployment & Long-Term Support
-                </strong>
-                Structured implementation with documentation and ongoing
-                system refinement.
-              </div>
-            </div>
-
-            {/* CTA */}
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <a
-                href={`https://wa.me/${contact.phone.replace(/\D/g, "")}`}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-primary"
-              >
-                Start a Conversation →
-              </a>
-
-              <a
-                href={`mailto:${contact.email}`}
-                className="btn-secondary"
-              >
-                Send Email
-              </a>
-            </div>
-
-            <p className="mt-6 text-xs text-text/50">
-              Based in Indonesia · Working with clients globally
-            </p>
-          </GlossyCard>
-        </motion.div>
-      </motion.section>
+      </div>
     </motion.div>
   );
 }

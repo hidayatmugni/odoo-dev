@@ -15,81 +15,64 @@ export default function Navbar() {
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed top-4 left-0 right-0 z-[999] px-3"
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-4 md:top-6 left-0 right-0 z-[999] px-4"
     >
-      <div className="max-w-5xl mx-auto">
-        <div className="card-gloss backdrop-blur-2xl bg-black/60 border border-gray-200/30 
-        dark:border-white/10 shadow-lg dark:shadow-2xl rounded-[2rem]
-        px-4 md:px-6 py-2 md:py-3 flex items-center justify-between">
-
-          {/* Logo */}
-          <div className="flex items-center gap-2 md:gap-3">
-            <div className="relative group">
-              <img
-                src="../assets/logo.jpeg"
-                alt="logo"
-                className="w-8 h-8 md:w-10 md:h-10 rounded-xl object-cover border-2 border-accent-teal/20 
-                group-hover:scale-110 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 rounded-xl bg-accent-teal/20 blur group-hover:blur-md transition-all" />
-            </div>
-
-            {/* Hide text on mobile */}
-            <div className="hidden md:block">
-              <div className="font-bold text-lg tracking-tight text-gray-900 dark:text-white leading-none">
-                Mugni Hidayat
-              </div>
-              <div className="text-[10px] uppercase tracking-widest font-semibold text-accent-teal mt-1">
-                Odoo Specialist
-              </div>
-            </div>
-          </div>
-
-          {/* Menu */}
-          <div className="
-          flex items-center
-          gap-1 md:gap-2
-          bg-white/5
-          p-1
+      <div className="max-w-fit mx-auto">
+        <div className="
+          relative
+          flex items-center justify-center
+          bg-[#050505]/40 backdrop-blur-xl
+          border border-white/10
           rounded-full
-          border border-gray-200/40">
-
+          p-1 md:p-1.5
+          shadow-[0_20px_50px_rgba(0,0,0,0.3)]
+        ">
+          
+          {/* NAVIGATION LINKS */}
+          <div className="relative z-10 flex items-center gap-0.5 md:gap-1">
             {links.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
-                className={({ isActive }) =>
-                `
-                text-[11px] md:text-sm
-                px-2 md:px-5
-                py-1 md:py-2
-                rounded-full
-                font-semibold
-                transition-all duration-300
-                backdrop-blur-md
-                ${
-                  isActive
-                ? `
-                text-accent-teal
-                bg-gradient-to-b from-white/35 via-white/10 to-transparent
-                backdrop-blur-xl
-                shadow-[
-                  inset_0_2px_4px_rgba(255,255,255,0.7),
-                  inset_0_-6px_10px_rgba(255,255,255,0.08),
-                  0_10px_30px_rgba(0,0,0,0.6),
-                  0_0_10px_rgba(20,184,166,0.25)
-                ]
-                `
-                : "text-gray-300 hover:text-white hover:bg-white/5"
-                }
-                `
-              }
+                className={({ isActive }) => `
+                  relative
+                  text-[9px] md:text-[11px]
+                  /* Padding Mobile dikecilkan dari px-5 jadi px-3 */
+                  px-3.5 md:px-8
+                  py-1.5 md:py-2.5
+                  rounded-full
+                  font-bold
+                  uppercase
+                  tracking-[0.15em] md:tracking-[0.2em]
+                  transition-all duration-500
+                  ${isActive 
+                    ? "text-white" 
+                    : "text-white/40 hover:text-white/70"
+                  }
+                `}
               >
-                {link.label}
+                {({ isActive }) => (
+                  <>
+                    {/* Active Indicator */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="nav-active"
+                        className="
+                          absolute inset-0 
+                          bg-white/[0.08] 
+                          border border-white/10
+                          rounded-full
+                        "
+                        transition={{ type: "spring", stiffness: 400, damping: 35 }}
+                      />
+                    )}
+                    <span className="relative z-10">{link.label}</span>
+                  </>
+                )}
               </NavLink>
             ))}
           </div>
-
         </div>
       </div>
     </motion.nav>
