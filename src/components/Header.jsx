@@ -6,16 +6,16 @@ import { motion } from "framer-motion";
 export default function Header({
   photo = "../assets/photo.jpeg",
   name = "Mugni Hidayat",
-  title = "Odoo Developer · ERP Customization Specialist",
+  title = "Freelance Odoo Developer · Also handles functional setup",
 }) {
   const { contact } = useContext(AppContext);
 
   // MENGGANTI UNGU: Fokus ke Blue, Cyan, Emerald, dan Slate (Metalik)
   const expertise = [
-    { label: "Odoo ERP", color: "from-blue-600/20 to-blue-600/5", text: "text-blue-400", border: "border-blue-500/30" },
-    { label: "Python Specialist", color: "from-violet-500/20 to-violet-500/5", text: "text-violet-400", border: "border-violet-500/30" },
-    { label: "Business Architect", color: "from-red-500/20 to-red-500/5", text: "text-red-400", border: "border-red-500/30" },
-    { label: "Financial Flow", color: "from-slate-500/20 to-slate-500/5", text: "text-slate-300", border: "border-slate-500/30" }
+    { label: "Odoo Development", color: "from-blue-600/20 to-blue-600/5", text: "text-blue-400", border: "border-blue-500/30" },
+    { label: "Custom Modules", color: "from-violet-500/20 to-violet-500/5", text: "text-violet-400", border: "border-violet-500/30" },
+    { label: "Python · XML", color: "from-red-500/20 to-red-500/5", text: "text-red-400", border: "border-red-500/30" },
+    { label: "Odoo Setup", color: "from-slate-500/20 to-slate-500/5", text: "text-slate-300", border: "border-slate-500/30" }
   ];
 
   return (
@@ -70,7 +70,7 @@ export default function Header({
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          <span className="text-[9px] font-black text-emerald-400 uppercase tracking-[0.3em]">Ready for Project</span>
+          <span className="text-[9px] font-black text-emerald-400 uppercase tracking-[0.3em]">Open for Projects</span>
         </div>
 
         {/* Name */}
@@ -80,7 +80,7 @@ export default function Header({
 
         {/* Title */}
        <div className="border-l-2 border-blue-600/50 pl-4 mb-8">
-          <p className="text-[10px] md:text-xs font-bold text-white/40 uppercase tracking-[0.4em] max-w-md leading-relaxed">
+          <p className="text-[10px] md:text-xs font-bold text-white/40 uppercase tracking-[0.2em] max-w-md leading-relaxed">
             {title}
           </p>
         </div>

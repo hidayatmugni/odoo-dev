@@ -6,7 +6,7 @@ import "./index.css";
 import { AppProvider } from "./context/AppContext";
 import ScrollToTop from "./components/ScrollToTop."; // Fix typo titik
 import DevelopmentBanner from "./components/DevelopmentBanner";
-import FloatingSound from "./components/FloatingSound";
+// import FloatingSound from "./components/FloatingSound";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -54,7 +54,7 @@ createRoot(document.getElementById("root")).render(
             <ScrollToTop />
             <AppRoutes />
           </div>
-              <FloatingSound />
+              {/* <FloatingSound /> */}
         </div>
       </BrowserRouter>
     </AppProvider>

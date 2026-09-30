@@ -4,58 +4,71 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowRight, FaTerminal, FaCodeBranch, FaExchangeAlt, FaChartBar, FaTools } from "react-icons/fa";
 import ModuleMarquee from "../components/ModuleMarquee";
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.15 } },
+};
+
 const services = [
   {
     id: "01",
-    title: "Odoo Architecture",
+    title: "Custom Modules",
     icon: <FaCodeBranch />,
-    summary: "Engineered logic that fits your business like a glove. No bloat, just pure performance.",
-    points: ["Custom Module Engineering", "Core Framework Extension", "Advanced OWL UI Components"],
-    quote: "Systems should bend to the business.",
+    summary: "When the standard features don't quite fit, I build or extend modules to fill the gap.",
+    points: ["New models, fields, views & menus", "Extending existing modules", "Python, XML & a bit of OWL"],
+    quote: "Custom only when it's truly needed. Simpler is easier to maintain.",
     color: "text-green-500",
     bg: "bg-green-500/5",
     size: "md:col-span-2",
   },
   {
     id: "02",
-    title: "Workflow Automation",
+    title: "Odoo Setup & Config",
     icon: <FaTerminal />,
-    summary: "Eliminating 'Human Error' by automating the boring stuff.",
-    points: ["Automated Stock Flows", "Manufacturing Logic", "Financial Reconciliation"],
-    quote: "If you do it twice, automate it.",
+    summary: "Not everything needs code. I can also set up Odoo modules to match your daily flow.",
+    points: ["Sales, Purchase, Inventory & Accounting setup", "User roles & access rights", "Basic walkthrough for your team"],
+    quote: "Sometimes the right configuration is all you need.",
     color: "text-emerald-500",
     bg: "bg-emerald-500/5",
     size: "md:col-span-1",
   },
   {
     id: "03",
-    title: "Marketplace Bridge",
+    title: "Workflow Automation",
     icon: <FaExchangeAlt />,
-    summary: "Seamless sync with Indonesian digital ecosystem.",
-    points: ["Shopee & Tokopedia API", "Payment Gateways", "Real-time Inventory Sync"],
-    quote: "I build the bridge for your island.",
+    summary: "Less repetitive manual work, so your team can focus on what matters.",
+    points: ["Automated actions & scheduled jobs", "Approval flows", "Auto emails & notifications"],
+    quote: "If it's done the same way every day, it can probably be automated.",
     color: "text-orange-500",
     bg: "bg-orange-500/5",
     size: "md:col-span-1",
   },
   {
     id: "04",
-    title: "Data Intelligence",
+    title: "Reports & Documents",
     icon: <FaChartBar />,
-    summary: "Converting raw database rows into 'Aha!' moments.",
-    points: ["Custom XLSX Reporting", "Interactive Dashboards", "Decision Pipelines"],
-    quote: "Find the rhythm in the noise.",
+    summary: "Invoices, quotations, or custom reports, laid out the way you need them.",
+    points: ["Custom PDF layouts (QWeb)", "Excel / XLSX reports", "Simple dashboards & filters"],
+    quote: "Data is only useful when it's easy to read.",
     color: "text-cyan-500",
     bg: "bg-cyan-500/5",
     size: "md:col-span-2",
   },
   {
     id: "05",
-    title: "System Recovery",
+    title: "Data Migration & Support",
     icon: <FaTools />,
-    summary: "Optimizing legacy setups that became slow or unstable.",
-    points: ["Database Optimization", "Technical Debt Cleanup", "Scalability Audits"],
-    quote: "Removing the unnecessary is art.",
+    summary: "Moving your data from spreadsheets or an old system, and sticking around to help once Odoo is live.",
+    points: ["Data import from Excel or older systems", "Bug fixes & small adjustments", "Support after go-live"],
+    quote: "Go-live isn't the finish line. I'm still here after that.",
     color: "text-green-400",
     bg: "bg-green-400/5",
     size: "md:col-span-3",
@@ -66,33 +79,35 @@ export default function Services() {
   const [selected, setSelected] = useState(null);
 
   return (
-    <motion.section 
-      initial="hidden" 
-      whileInView="show" 
-      viewport={{ once: true }}
+    <motion.section
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
       className="max-w-6xl mx-auto px-0 md:px-0 py-6 md:py-10 space-y-6 md:space-y-10"
     >
       {/* 1. HEADER - More Compact on Mobile */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-8 md:pb-12">
+      <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-8 md:pb-12">
         <div className="space-y-1 md:space-y-2">
           <div className="flex items-center gap-3">
             <div className="h-[1px] w-6 md:w-8 bg-green-600" />
-            <span className="text-green-500 font-black uppercase tracking-[0.4em] text-[8px] md:text-[10px]">Capabilities</span>
+            <span className="text-green-500 font-black uppercase tracking-[0.4em] text-[8px] md:text-[10px]">Services</span>
           </div>
           <h2 className="text-4xl md:text-8xl font-black text-white italic uppercase tracking-tighter leading-[0.8] mb-0">
-            Tech <br /> <span className="text-green-600">Arsenal.</span>
+            How I <br /> <span className="text-green-600">Can Help.</span>
           </h2>
         </div>
         <p className="text-white/40 text-[9px] md:text-[11px] font-bold uppercase tracking-[0.2em] md:max-w-[250px] leading-relaxed border-l border-white/10 pl-4 md:pl-6">
-          Beyond development. <br className="hidden md:block" /> I engineer business growth through technical precision.
+          Mostly building & customizing Odoo, <br className="hidden md:block" /> with a hand in setting it up too.
         </p>
-      </div>
+      </motion.div>
 
-      {/* 2. BENTO GRID SYSTEM - Adjusted Padding for Mobile */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+      {/* 2. BENTOGRID SYSTEM - Adjusted Padding for Mobile */}
+      <motion.div variants={container} className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
         {services.map((service) => (
           <motion.div
             key={service.id}
+            variants={fadeUp}
             onClick={() => setSelected(service)}
             className={`
               ${service.size} group relative 
@@ -110,7 +125,7 @@ export default function Services() {
                   {service.icon}
                 </div>
                 <span className="font-mono text-white/5 text-[8px] md:text-[10px] uppercase tracking-widest">
-                  SYS_CONF // {service.id}
+                  Service // {service.id}
                 </span>
               </div>
 
@@ -126,36 +141,40 @@ export default function Services() {
                   <div className="w-6 h-6 md:w-8 md:h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-green-500/50 transition-colors">
                     <FaArrowRight className="text-white/20 text-[8px] md:text-[10px] -rotate-45 group-hover:rotate-0 group-hover:text-green-500 transition-all" />
                   </div>
-                  <span className="text-[8px] md:text-[9px] font-black text-white/40 uppercase tracking-[0.3em]">Initialize Audit</span>
+                  <span className="text-[8px] md:text-[9px] font-black text-white/40 uppercase tracking-[0.3em]">See Details</span>
                 </div>
               </div>
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* 3. MARQUEE */}
-      <div className="pt-2 md:pt-6">
+      <motion.div variants={fadeUp} className="pt-2 md:pt-6">
         <div className="text-center mb-4 md:mb-6">
-          <span className="text-[9px] md:text-[12px] font-black text-white/40 uppercase tracking-[0.5em]">Module Expertise Stack</span>
+          <span className="text-[9px] md:text-[12px] font-black text-white/40 uppercase tracking-[0.5em]">Modules I Work With</span>
         </div>
         <div className="bg-white/[0.02] border border-white/5 rounded-2xl md:rounded-3xl py-3 md:py-4">
           <ModuleMarquee speed="slow" />
         </div>
-      </div>
+      </motion.div>
 
       {/* 4. MODAL - Mobile Optimization */}
       <AnimatePresence>
         {selected && (
           <motion.div
-            className="fixed inset-0 z-[9999] flex items-end md:items-center justify-center p-0 md:p-6 bg-black/90 backdrop-blur-md"
+            className="fixed inset-0 z-[9999] flex items-end md:items-center justify-center p-0 md:p-6 bg-black/90"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
           >
             <div className="absolute inset-0" onClick={() => setSelected(null)} />
             <motion.div
-              layoutId={selected.id}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 24 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               className="relative w-full max-w-xl bg-[#0a0a0a] border-t md:border border-white/10 rounded-t-[2.5rem] md:rounded-[3rem] p-7 md:p-12 shadow-2xl overflow-hidden max-h-[92vh] overflow-y-auto"
             >
               <div className="w-10 h-1 bg-white/10 rounded-full mx-auto mb-6 md:hidden" />
@@ -188,7 +207,7 @@ export default function Services() {
                   onClick={() => setSelected(null)}
                   className="w-full mt-8 py-4 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black uppercase tracking-[0.3em] md:hidden text-white/60"
                 >
-                  Return to Arsenal
+                  Back to Services
                 </button>
               </div>
             </motion.div>

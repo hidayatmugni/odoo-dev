@@ -13,7 +13,7 @@ export default function ContactCard() {
     {
       label: "Github",
       value: "hidayatmugni",
-      href: `https://github.com/${contact.github}`,
+      href: contact.github,
       accent: "text-blue-400",
       icon: <FaGithub />,
     },
@@ -60,7 +60,7 @@ export default function ContactCard() {
             Get In <span className="text-purple-600">Touch.</span>
           </h3>
           <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mt-2">
-            Available for remote collaboration
+            Remote-friendly · WIB (GMT+7)
           </p>
         </div>
 
@@ -120,7 +120,7 @@ export default function ContactCard() {
             <div className="px-2 py-2 bg-emerald-500/5 border border-emerald-500/10 rounded-full">
                <p className="text-[8px] font-black text-emerald-500/60 uppercase tracking-[0.3em] flex items-center gap-2">
                  <span className="w-1 h-1 bg-emerald-500 rounded-full animate-pulse" />
-                 Ready for global collaboration
+                 Open for freelance projects
                </p>
             </div>
         </div>
